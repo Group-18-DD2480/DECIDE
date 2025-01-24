@@ -105,5 +105,3 @@ def lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2):
             return True
 
     return subcond1 and subcond2
-
-import math
