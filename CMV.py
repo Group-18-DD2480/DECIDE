@@ -1,5 +1,7 @@
 import math
 
+EPSILON = 1e-7  # Small tolerance for floating point comparisons
+
 def calculate_distance(x1, y1, x2, y2):
     """Calculate the distance between two points (x1, y1) and (x2, y2)."""
     return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
@@ -54,15 +56,16 @@ def lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2):
         else:
             dist = (ab * bc * ca) / (4 * area) # Calculate the circumradius
             
-        if dist > RADIUS1:
+        # Check if dist is greater than RADIUS1 with a tolerance
+        if dist > RADIUS1 + EPSILON:
             subcond1 = True
 
-        if dist <= RADIUS2:
+        # Check if dist is less than or equal to RADIUS2 with a tolerance
+        if dist <= RADIUS2 + EPSILON:
             subcond2 = True
 
-        # when both subconditions are ok, exit and return True
+        # When both subconditions are satisfied, return True
         if subcond1 and subcond2:
             return True
 
-    
     return subcond1 and subcond2
