@@ -1,6 +1,6 @@
 import unittest
 
-from CMV import lic_10, lic_11
+from CMV import lic_10, lic_11, lic_12
 
 
 class TestLIC_10(unittest.TestCase):
@@ -34,5 +34,27 @@ class TestLIC_11(unittest.TestCase):
         self.assertTrue(lic_11(X, G_PTS))
 
 
+class TestLIC_12(unittest.TestCase):
+    def test_insufficient_points(self):
+        X, Y = [0, 1], [0, 1]
+        K_PTS, LENGTH1, LENGTH2 = 1, 1, 2
+        self.assertFalse(lic_12(X, Y, K_PTS, LENGTH1, LENGTH2))
+        
+    def test_only_g(self):
+        X, Y = [0, 3, 0, 3], [0, 0, 3, 3]
+        K_PTS, LENGTH1, LENGTH2 = 1, 2, 0.5
+        self.assertFalse(lic_12(X, Y, K_PTS, LENGTH1, LENGTH2))
+
+    def test_only_l(self):
+        X, Y = [0, 1, 0, 1], [0, 0, 1, 1]
+        K_PTS, LENGTH1, LENGTH2 = 1, 5, 1.5
+        self.assertFalse(lic_12(X, Y, K_PTS, LENGTH1, LENGTH2))
+
+    def test_both(self):
+        X, Y = [0, 10, 0, 1, 15, 2], [0, 0, 10, 1, 15, 2]
+        K_PTS, LENGTH1, LENGTH2 = 1, 8, 2
+        self.assertTrue(lic_12(X, Y, K_PTS, LENGTH1, LENGTH2))
+        
+        
 if __name__ == '__main__':
     unittest.main()
