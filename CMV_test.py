@@ -8,12 +8,12 @@ class TestLIC_13(unittest.TestCase):
         self.assertFalse(lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2))
 
     def test_radius_condition_met(self):
-        X, Y = [0, 5, 10], [0, 5, 0]
+        X, Y = [0, 0, 5 , 6, 10], [0, 1, 5, 6,  0]
         A_PTS, B_PTS, RADIUS1, RADIUS2 = 1, 1, 4.0, 15.0
         self.assertTrue(lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2))
 
     def test_radius_condition_not_met(self):
-        X, Y = [0, 1, 2], [0, 1, 0]
+        X, Y = [0, 0, 5 , 6, 10], [0, 1, 5, 6,  0]
         A_PTS, B_PTS, RADIUS1, RADIUS2 = 1, 1, 5.0, 1.0
         self.assertFalse(lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2))
 
