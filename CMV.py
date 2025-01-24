@@ -14,9 +14,9 @@ def lic_10(X, Y, E_PTS, F_PTS, AREA1):
 def lic_11(X, G_PTS):
     if (n := len(X)) < 3:
         return False
-    for i in range(n):
-        j = i + G_PTS + 1
-        if j < n and (X[j] - X[i]) < 0:
+    for a in range(n):
+        b = a + G_PTS + 1
+        if b < n and (X[b] - X[a]) < 0:
             return True
     return False
     
