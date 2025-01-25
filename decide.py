@@ -3,14 +3,14 @@ PI = 3.1415926535
 
 # TYPE DECLARATIONS
 class CONNECTORS:
-    def NOTUSED(pair = None):
+    def NOTUSED(i = None, j = None):
         return None
     
-    def ANDD(pair):
-        return pair[0] and pair[1]
+    def ANDD(i,j):
+        return i and j
 
-    def ORR(pair):
-        return pair[0] or pair[1]
+    def ORR(i,j):
+        return i or j
 
 class COMPTYPE:
     LT = 1111
@@ -42,19 +42,15 @@ class PARAMETERS_T:
 
 # Global variable declarations
 PARAMETERS = PARAMETERS_T()
-PARAMETERS2 = PARAMETERS_T()
 
 # X coordinates of data points
 X = []
-X2 = []
 
 # Y coordinates of data points
 Y = []
-Y2 = []
 
 # Number of data points
 NUMPOINTS = 0
-NUMPOINTS2 = 0
 
 # Logical Connector Matrix
 LCM = []  # 2D array of CONNECTORS
@@ -62,27 +58,15 @@ LCM2 = []
 
 # Preliminary Unlocking Matrix
 PUM = []  # 2D array of booleans
-PUM2 = []
 
 # Conditions Met Vector
 CMV = []  # Array of booleans
-CMV2 = []
 
 # Final Unlocking Vector
 FUV = []  # Array of booleans
-FUV2 = []
 
 # Decision: Launch or No Launch
 LAUNCH = False
-LAUNCH2 = False
-
-def DOUBLECOMPARE(A, B):
-    """Compares floating point numbers."""
-    if abs(A - B) < 0.00001:
-        return COMPTYPE.EQ
-    if A < B:
-        return COMPTYPE.LT
-    return COMPTYPE.GT
 
 def DECIDE():
     """Function we must write."""
