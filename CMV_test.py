@@ -67,5 +67,28 @@ class TestLICs(unittest.TestCase):
         setup_DECIDE(points, parameters)
         self.assertFalse(DECIDE.LIC2())
 
+
+    # Tests for LIC3
+    def test_LIC3_positive(self):
+        # A triangle with area greater than AREA1
+        points = [(0, 0), (4, 0), (0, 3)]
+        parameters = {'AREA1': 5}
+        setup_DECIDE(points, parameters)
+        self.assertTrue(DECIDE.LIC3())
+
+    def test_LIC3_negative(self):
+        # No triangle with area greater than AREA1
+        points = [(0, 0), (1, 0), (0, 1)]
+        parameters = {'AREA1': 1}
+        setup_DECIDE(points, parameters)
+        self.assertFalse(DECIDE.LIC3())
+
+    def test_LIC3_invalid_input(self):
+        # Collinear points, area undefined (treated as 0)
+        points = [(0, 0), (1, 1), (2, 2)]
+        parameters = {'AREA1': 0.5}
+        setup_DECIDE(points, parameters)
+        self.assertFalse(DECIDE.LIC3())
+
 if __name__ == '__main__':
     unittest.main()

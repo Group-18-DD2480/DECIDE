@@ -67,3 +67,25 @@ def lic_2():
             return True
     
     return False # no such set of points exists
+
+
+def lic_3():
+    def triangle_area(point1, point2, point3):
+        x1, y1 = point1
+        x2, y2 = point2
+        x3, y3 = point3
+
+        # Using the determinant formula for the area of a triangle
+        area = abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2
+        return area
+    
+    for i in range(DECIDE.NUMPOINTS - 2):
+        p1, p2, p3 = DECIDE.POINTS[i], DECIDE.POINTS[i+1], DECIDE.POINTS[i+2]
+        if p2 == p1 or p2 == p3: continue # angle is undefined
+        
+        p1, p2, p3 = (DECIDE.X[i], DECIDE.Y[i]), (DECIDE.X[i+1], DECIDE.Y[i+1]), (DECIDE.X[i+2], DECIDE.Y[i+2])
+        area = triangle_area(p1, p2, p3)
+        if area > DECIDE.PARAMETERS.AREA1:
+            return True
+    
+    return False # no such set of points exists
