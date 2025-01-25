@@ -106,4 +106,21 @@ def lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2):
 
     return subcond1 and subcond2
 
+def lic_14(X, Y, E_PTS, F_PTS, AREA1, AREA2):
+    """
+    Determine if LIC 14 is met.
+
+    Parameters:
+    - X: List of X coordinates.
+    - Y: List of Y coordinates.
+    - E_PTS: Number of intervening points between the first and second points.
+    - F_PTS: Number of intervening points between the second and third points.
+    - AREA1: Area for the first triangle condition.
+    - AREA2: Area for the second triangle condition.
+
+    Returns:
+    - Boolean indicating if LIC 14 is met.
+    """
+    pass
+
 import math
