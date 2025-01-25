@@ -2,6 +2,42 @@ import math
 
 EPSILON = 1e-7  # Small tolerance for floating point comparisons
 
+def lic_10(X, Y, E_PTS, F_PTS, AREA1):
+    if (n := len(X)) < 5:
+        return False
+    for a in range(n):
+        b = a + E_PTS + 1
+        c = b + F_PTS + 1
+        if c < n:
+            if (abs(X[a]*(Y[b] - Y[c]) + X[b]*(Y[c] - Y[a]) + X[c]*(Y[a] - Y[b])) / 2.0) > AREA1:
+                print((abs(X[a]*(Y[b] - Y[c]) + X[b]*(Y[c] - Y[a]) + X[c]*(Y[a] - Y[b])) / 2.0))
+                return True
+    return False
+
+
+def lic_11(X, G_PTS):
+    if (n := len(X)) < 3:
+        return False
+    for a in range(n):
+        b = a + G_PTS + 1
+        if b < n and (X[b] - X[a]) < 0:
+            return True
+    return False
+
+
+def lic_12(X, Y, K_PTS, LENGTH1, LENGTH2):
+    if (n := len(X)) < 3:
+        return False
+    g, l = False, False
+    for a in range(n):
+        if (b := a + K_PTS + 1) < n:
+            ab = math.sqrt(math.pow((X[b] - X[a]), 2) + math.pow((Y[b] - Y[a]), 2))
+            g = g if g else ab > LENGTH1
+            l = l if l else ab < LENGTH2
+            if g and l:
+                return True
+    return False    
+
 def calculate_distance(x1, y1, x2, y2):
     """Calculate the distance between two points (x1, y1) and (x2, y2)."""
     return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
@@ -69,3 +105,5 @@ def lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2):
             return True
 
     return subcond1 and subcond2
+
+import math
