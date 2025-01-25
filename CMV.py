@@ -146,11 +146,11 @@ def lic_14(X, Y, E_PTS, F_PTS, AREA1, AREA2):
 
         area = calculate_area(X[a], Y[a], X[b], Y[b], X[c], Y[c])
             
-        # Check if dist is greater than RADIUS1 with a tolerance
+        # Check if area is greater than AREA1 with a tolerance
         if area > AREA1 + EPSILON:
             subcond1 = True
 
-        # Check if dist is less than or equal to RADIUS2 with a tolerance
+        # Check if area is less than AREA1 with a tolerance
         if area < AREA2 - EPSILON:
             subcond2 = True
 

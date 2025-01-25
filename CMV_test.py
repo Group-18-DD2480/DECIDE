@@ -96,14 +96,24 @@ class TestLIC_14(unittest.TestCase):
         E_PTS, F_PTS, AREA1, AREA2 = 1, 1, 1.0, 2.0
         self.assertFalse(lic_14(X, Y, E_PTS, F_PTS, AREA1, AREA2))
 
-    def test_area_condition_met(self):
+    def test_both_condition_met(self):
         X, Y = [0, 0, 5, 6, 10], [0, 1, 5, 4, 0]
         E_PTS, F_PTS, AREA1, AREA2 = 1, 1, 10.0, 40.0
         self.assertTrue(lic_14(X, Y, E_PTS, F_PTS, AREA1, AREA2))
 
-    def test_area_condition_not_met(self):
+    def test_no_conditions_met(self):
         X, Y = [0, 5, 1, 5, 2], [0, 3, 1, 4, 0]
         E_PTS, F_PTS, AREA1, AREA2 = 1, 1, 15.0, 10.0
+        self.assertFalse(lic_14(X, Y, E_PTS, F_PTS, AREA1, AREA2))
+        
+    def test_only_condition_1_met(self):
+        X, Y = [0, 0, 5, 6, 10], [0, 1, 5, 4, 0]
+        E_PTS, F_PTS, AREA1, AREA2 = 1, 1, 10.0, 20.0
+        self.assertFalse(lic_14(X, Y, E_PTS, F_PTS, AREA1, AREA2))
+        
+    def test_only_condition_2_met(self):
+        X, Y = [0, 0, 5, 6, 10], [0, 1, 5, 4, 0]
+        E_PTS, F_PTS, AREA1, AREA2 = 1, 1, 30.0, 40.0
         self.assertFalse(lic_14(X, Y, E_PTS, F_PTS, AREA1, AREA2))
         
 if __name__ == '__main__':
