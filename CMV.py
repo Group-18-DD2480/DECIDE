@@ -121,6 +121,44 @@ def lic_14(X, Y, E_PTS, F_PTS, AREA1, AREA2):
     Returns:
     - Boolean indicating if LIC 14 is met.
     """
-    pass
+    subcond1 = False
+    subcond2 = False
+    
+    if AREA1 < 0: 
+        return False
+    if AREA2 < 0: 
+        return False
+    if (n := len(X)) < 5:
+        return False
+    if E_PTS + F_PTS + 3 > n:
+        return False
+    
+    for a in range(n):
+        b = a + E_PTS + 1
+        c = b + F_PTS + 1
+    
+        if(c>=n):
+            break
+    
+        ab = calculate_distance(X[a], Y[a], X[b], Y[b])
+        bc = calculate_distance(X[b], Y[b], X[c], Y[c])
+        ca = calculate_distance(X[a], Y[a], X[c], Y[c])
+
+        area = calculate_area(X[a], Y[a], X[b], Y[b], X[c], Y[c])
+            
+        # Check if dist is greater than RADIUS1 with a tolerance
+        if area > AREA1 + EPSILON:
+            subcond1 = True
+
+        # Check if dist is less than or equal to RADIUS2 with a tolerance
+        if area < AREA2 - EPSILON:
+            subcond2 = True
+
+        # When both subconditions are satisfied, return True
+        if subcond1 and subcond2:
+            return True
+
+    return subcond1 and subcond2
+
 
 import math

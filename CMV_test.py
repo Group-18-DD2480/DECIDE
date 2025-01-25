@@ -98,7 +98,7 @@ class TestLIC_14(unittest.TestCase):
 
     def test_area_condition_met(self):
         X, Y = [0, 0, 5, 6, 10], [0, 1, 5, 4, 0]
-        E_PTS, F_PTS, AREA1, AREA2 = 1, 1, 10.0, 20.0
+        E_PTS, F_PTS, AREA1, AREA2 = 1, 1, 10.0, 40.0
         self.assertTrue(lic_14(X, Y, E_PTS, F_PTS, AREA1, AREA2))
 
     def test_area_condition_not_met(self):
