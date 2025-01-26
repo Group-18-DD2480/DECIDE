@@ -39,31 +39,24 @@ class TestLICs(unittest.TestCase):
         self.assertFalse(DECIDE.LIC1())
 
     # Tests for LIC2
-    def test_LIC2_positive_less(self):
+    def test_LIC2_positive(self):
         # Angle less than (PI - EPSILON)
         points = [(0, 0), (1, 0), (1, 1)]
-        parameters = {'EPSILON': 0.5}
+        parameters = {'EPSILON': 0.0005}
         setup_DECIDE(points, parameters)
         self.assertTrue(DECIDE.LIC2())
-
-    def test_LIC2_positive_greater(self):
-        # Angle greater than (PI + EPSILON)
-        points = [(0, 0), (1, 0), (2, 0)]
-        parameters = {'EPSILON': 0.1}
-        setup_DECIDE(points, parameters)
-        self.assertFalse(DECIDE.LIC2())  # Collinear points; angle undefined, should return False
 
     def test_LIC2_negative(self):
         # Angle within (PI - EPSILON) and (PI + EPSILON)
         points = [(0, 0), (1, 0), (2, 0)]
-        parameters = {'EPSILON': 0.5}
+        parameters = {'EPSILON': 0.0005}
         setup_DECIDE(points, parameters)
         self.assertFalse(DECIDE.LIC2())
 
     def test_LIC2_invalid_input(self):
         # Angle undefined due to coinciding points
         points = [(0, 0), (0, 0), (1, 1)]
-        parameters = {'EPSILON': 0.5}
+        parameters = {'EPSILON': 0.0005}
         setup_DECIDE(points, parameters)
         self.assertFalse(DECIDE.LIC2())
 
