@@ -25,6 +25,13 @@ def lic_4(X, Y, Q_PTS, QUADS) -> bool:
             return True
     return False
 
+def lic_5(X,Y)-> bool:
+    if len(X) < 2:
+        return False
+    for i in range(len(X)-1):
+        if (X[i+1] - X[i] < 0):
+            return True
+    return False
         
 def lic_10(X, Y, E_PTS, F_PTS, AREA1):
     if (n := len(X)) < 5:
