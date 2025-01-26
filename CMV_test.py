@@ -1,7 +1,7 @@
 import unittest
 
 from CMV import lic_10, lic_11, lic_12
-from CMV import lic_4
+from CMV import lic_4, lic_5
 
 class TestLIC_4(unittest.TestCase):
     def test_insufficient_points(self):
@@ -42,6 +42,17 @@ class TestLIC_4(unittest.TestCase):
         Q_PTS, QUADS = 3, 1
         self.assertFalse(lic_4(X, Y, Q_PTS, QUADS))
 
+class TestLIC_5(unittest.TestCase):
+    def test_insufficient_points(self):
+        X, Y = [0], [1]
+        self.assertFalse(lic_5(X,Y))
+
+    def test_second_X_smaller(self):
+        X, Y = [0, -2], [1, 1]
+        self.assertTrue(lic_5(X,Y))
+    def test_second_X_larger(self):
+        X, Y = [0, 2], [1, 1]
+        self.assertFalse(lic_5(X,Y))
 
 class TestLIC_10(unittest.TestCase):
     def test_insufficient_points(self):
