@@ -1,7 +1,7 @@
 import unittest
 
 from CMV import lic_10, lic_11, lic_12
-from CMV import lic_4, lic_5
+from CMV import lic_4, lic_5, lic_6
 
 class TestLIC_4(unittest.TestCase):
     def test_insufficient_points(self):
@@ -53,6 +53,37 @@ class TestLIC_5(unittest.TestCase):
     def test_second_X_larger(self):
         X, Y = [0, 2], [1, 1]
         self.assertFalse(lic_5(X,Y))
+
+class TestLIC_6(unittest.TestCase):
+    def test_insufficient_points(self):
+        X = [0, 1, 2]
+        Y = [0, 1, 0]
+        N_PTS, DIST = 4, 1
+        self.assertFalse(lic_6(X, Y, N_PTS, DIST))
+    
+    def test_coincident_point_true(self):
+        X = [0, 10, 1, 0]
+        Y = [0, 10, 0, 0]
+        N_PTS, DIST = 4, 2
+        self.assertTrue(lic_6(X, Y, N_PTS, DIST))
+    def test_coincident_point_false(self):
+        X = [0, 0, 1, 0]
+        Y = [0, 1, 0, 0]
+        N_PTS, DIST = 4, 2
+        self.assertFalse(lic_6(X, Y, N_PTS, DIST))
+    
+    def test_diff_point_true(self):
+        X = [0, 0, 0, 10]
+        Y = [0, 10, 0, 0]
+        N_PTS, DIST = 4, 2
+        self.assertTrue(lic_6(X, Y, N_PTS, DIST))
+    def test_diff_point_false(self):
+        X = [0, 0, 1, 10]
+        Y = [0, 1, 0, 0]
+        N_PTS, DIST = 4, 2
+        self.assertFalse(lic_6(X, Y, N_PTS, DIST))
+
+        
 
 class TestLIC_10(unittest.TestCase):
     def test_insufficient_points(self):
