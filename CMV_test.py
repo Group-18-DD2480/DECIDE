@@ -1,6 +1,46 @@
 import unittest
 
 from CMV import lic_10, lic_11, lic_12
+from CMV import lic_4
+
+class TestLIC_4(unittest.TestCase):
+    def test_insufficient_points(self):
+        X, Y, = [0, 1, -1], [1, 3, 2]
+        Q_PTS, QUADS = 4, 2
+        self.assertFalse(lic_4(X, Y, Q_PTS, QUADS))
+    def test_1QUADS_TRUE(self):
+        X, Y, = [1, -1, 1], [1, 3, 2]
+        Q_PTS, QUADS = 3, 1
+        self.assertTrue(lic_4(X, Y, Q_PTS, QUADS))
+    def test_1QUADS_FALSE(self):
+        X, Y, = [1, 4, 1], [1, 3, 2]
+        Q_PTS, QUADS = 3, 1
+        self.assertFalse(lic_4(X, Y, Q_PTS, QUADS))
+    def test_1QUADS_PRIORITY_TRUE(self):
+        X, Y, = [0, -1, 1], [0, 0, 2]
+        Q_PTS, QUADS = 3, 1
+        self.assertTrue(lic_4(X, Y, Q_PTS, QUADS))
+    def test_1QUADS_PRIORITY_FALSE(self):
+        X, Y, = [0, 1, 0], [0, 0, 1]
+        Q_PTS, QUADS = 3, 1
+        self.assertFalse(lic_4(X, Y, Q_PTS, QUADS))
+    
+    def test_1QUADS_PRIORITY_ALL_I(self):
+        X, Y, = [0, 1, 0], [0, 0, 1]
+        Q_PTS, QUADS = 3, 1
+        self.assertFalse(lic_4(X, Y, Q_PTS, QUADS))
+    def test_1QUADS_PRIORITY_ALL_II(self):
+        X, Y, = [-2, -1, -1], [1, 0, 1]
+        Q_PTS, QUADS = 3, 1
+        self.assertFalse(lic_4(X, Y, Q_PTS, QUADS))
+    def test_1QUADS_PRIORITY_ALL_III(self):
+        X, Y, = [0, -1, -1], [-1, -2, -1]
+        Q_PTS, QUADS = 3, 1
+        self.assertFalse(lic_4(X, Y, Q_PTS, QUADS))
+    def test_1QUADS_PRIORITY_ALL_IV(self):
+        X, Y, = [1, 2, 4], [-1, -3, -1]
+        Q_PTS, QUADS = 3, 1
+        self.assertFalse(lic_4(X, Y, Q_PTS, QUADS))
 
 
 class TestLIC_10(unittest.TestCase):

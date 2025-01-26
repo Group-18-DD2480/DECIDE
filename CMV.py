@@ -1,6 +1,31 @@
 import math
 
 
+def lic_4(X, Y, Q_PTS, QUADS) -> bool:
+    def quadrant(px, py)->int:
+        if px >= 0 and py >= 0:
+            return 0
+        elif px < 0 and py >= 0:
+            return 1
+        elif px <= 0 and py < 0:
+            return 2
+        else:
+            return 3
+    if len(X) < Q_PTS:
+        return False
+    
+    quad = []
+    for i in range(len(X)):
+        quad.append(quadrant(X[i], Y[i]))
+    for i in range(len(X) - Q_PTS + 1):
+        nbr_quads = [0,0,0,0]
+        for j in range(Q_PTS):
+            nbr_quads[quad[i+j]] = 1
+        if (QUADS < nbr_quads.count(1)):
+            return True
+    return False
+
+        
 def lic_10(X, Y, E_PTS, F_PTS, AREA1):
     if (n := len(X)) < 5:
         return False
