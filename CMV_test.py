@@ -1,5 +1,88 @@
 import unittest
+
 from CMV import *
+
+class TestLIC_4(unittest.TestCase):
+    def test_insufficient_points(self):
+        X, Y, = [0, 1, -1], [1, 3, 2]
+        Q_PTS, QUADS = 4, 2
+        self.assertFalse(lic_4(X, Y, Q_PTS, QUADS))
+    def test_1QUADS_TRUE(self):
+        X, Y, = [1, -1, 1], [1, 3, 2]
+        Q_PTS, QUADS = 3, 1
+        self.assertTrue(lic_4(X, Y, Q_PTS, QUADS))
+    def test_1QUADS_FALSE(self):
+        X, Y, = [1, 4, 1], [1, 3, 2]
+        Q_PTS, QUADS = 3, 1
+        self.assertFalse(lic_4(X, Y, Q_PTS, QUADS))
+    def test_1QUADS_PRIORITY_TRUE(self):
+        X, Y, = [0, -1, 1], [0, 0, 2]
+        Q_PTS, QUADS = 3, 1
+        self.assertTrue(lic_4(X, Y, Q_PTS, QUADS))
+    def test_1QUADS_PRIORITY_FALSE(self):
+        X, Y, = [0, 1, 0], [0, 0, 1]
+        Q_PTS, QUADS = 3, 1
+        self.assertFalse(lic_4(X, Y, Q_PTS, QUADS))
+    
+    def test_1QUADS_PRIORITY_ALL_I(self):
+        X, Y, = [0, 1, 0], [0, 0, 1]
+        Q_PTS, QUADS = 3, 1
+        self.assertFalse(lic_4(X, Y, Q_PTS, QUADS))
+    def test_1QUADS_PRIORITY_ALL_II(self):
+        X, Y, = [-2, -1, -1], [1, 0, 1]
+        Q_PTS, QUADS = 3, 1
+        self.assertFalse(lic_4(X, Y, Q_PTS, QUADS))
+    def test_1QUADS_PRIORITY_ALL_III(self):
+        X, Y, = [0, -1, -1], [-1, -2, -1]
+        Q_PTS, QUADS = 3, 1
+        self.assertFalse(lic_4(X, Y, Q_PTS, QUADS))
+    def test_1QUADS_PRIORITY_ALL_IV(self):
+        X, Y, = [1, 2, 4], [-1, -3, -1]
+        Q_PTS, QUADS = 3, 1
+        self.assertFalse(lic_4(X, Y, Q_PTS, QUADS))
+
+class TestLIC_5(unittest.TestCase):
+    def test_insufficient_points(self):
+        X, Y = [0], [1]
+        self.assertFalse(lic_5(X,Y))
+
+    def test_second_X_smaller(self):
+        X, Y = [0, -2], [1, 1]
+        self.assertTrue(lic_5(X,Y))
+    def test_second_X_larger(self):
+        X, Y = [0, 2], [1, 1]
+        self.assertFalse(lic_5(X,Y))
+
+class TestLIC_6(unittest.TestCase):
+    def test_insufficient_points(self):
+        X = [0, 1, 2]
+        Y = [0, 1, 0]
+        N_PTS, DIST = 4, 1
+        self.assertFalse(lic_6(X, Y, N_PTS, DIST))
+    
+    def test_coincident_point_true(self):
+        X = [0, 10, 1, 0]
+        Y = [0, 10, 0, 0]
+        N_PTS, DIST = 4, 2
+        self.assertTrue(lic_6(X, Y, N_PTS, DIST))
+    def test_coincident_point_false(self):
+        X = [0, 0, 1, 0]
+        Y = [0, 1, 0, 0]
+        N_PTS, DIST = 4, 2
+        self.assertFalse(lic_6(X, Y, N_PTS, DIST))
+    
+    def test_diff_point_true(self):
+        X = [0, 0, 0, 10]
+        Y = [0, 10, 0, 0]
+        N_PTS, DIST = 4, 2
+        self.assertTrue(lic_6(X, Y, N_PTS, DIST))
+    def test_diff_point_false(self):
+        X = [0, 0, 1, 10]
+        Y = [0, 1, 0, 0]
+        N_PTS, DIST = 4, 2
+        self.assertFalse(lic_6(X, Y, N_PTS, DIST))
+
+        
 
 class TestLIC_10(unittest.TestCase):
     def test_insufficient_points(self):
