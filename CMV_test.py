@@ -1,6 +1,7 @@
 import unittest
 
 from CMV import lic_10, lic_11, lic_12
+from CMV import lic_7
 from CMV import lic_4, lic_5, lic_6
 
 
@@ -175,6 +176,23 @@ class TestLIC_12(unittest.TestCase):
         X, Y = [0, 10, 0, 1, 15, 2], [0, 0, 10, 1, 15, 2]
         K_PTS, LENGTH1, LENGTH2 = 1, 8, 2
         self.assertTrue(lic_12(X, Y, K_PTS, LENGTH1, LENGTH2))
+
+
+class TestLIC_7(unittest.TestCase):
+    def test_insufficient_points(self):
+        X, Y = [0, 1], [0, 1]
+        K_PTS, LENGTH1 = 1, 1
+        self.assertFalse(lic_7(X, Y, K_PTS, LENGTH1))
+
+    def test_distance_greater(self):
+        X, Y = [0, 1, 2, 5], [0, 1, 2, 5]
+        K_PTS, LENGTH1 = 1, 3
+        self.assertTrue(lic_7(X, Y, K_PTS, LENGTH1))
+
+    def test_distance_smaller(self):
+        X, Y = [0, 1, 2, 3], [0, 1, 2, 3]
+        K_PTS, LENGTH1 = 1, 5
+        self.assertFalse(lic_7(X, Y, K_PTS, LENGTH1))
 
 
 if __name__ == "__main__":

@@ -64,6 +64,18 @@ def lic_6(X, Y, N_PTS, DIST) -> bool:
     return False
 
 
+def lic_7(X, Y, K_PTS, LENGTH1) -> bool:
+    """Check if there are two points separated by K_PTS points with distance > LENGTH1"""
+    if len(X) < 3:
+        return False
+
+    for i in range(len(X) - K_PTS - 1):
+        dist = calculate_distance(X[i], Y[i], X[i + K_PTS + 1], Y[i + K_PTS + 1])
+        if dist > LENGTH1:
+            return True
+    return False
+
+
 def lic_10(X, Y, E_PTS, F_PTS, AREA1):
     if (n := len(X)) < 5:
         return False
