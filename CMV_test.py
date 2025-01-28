@@ -1,7 +1,7 @@
 import unittest
 
 from CMV import lic_10, lic_11, lic_12
-from CMV import lic_7
+from CMV import lic_7, lic_8
 from CMV import lic_4, lic_5, lic_6
 
 
@@ -193,6 +193,23 @@ class TestLIC_7(unittest.TestCase):
         X, Y = [0, 1, 2, 3], [0, 1, 2, 3]
         K_PTS, LENGTH1 = 1, 5
         self.assertFalse(lic_7(X, Y, K_PTS, LENGTH1))
+
+
+class TestLIC_8(unittest.TestCase):
+    def test_insufficient_points(self):
+        X, Y = [0, 1, 2, 3], [0, 1, 2, 3]
+        A_PTS, B_PTS, RADIUS1 = 1, 1, 1
+        self.assertFalse(lic_8(X, Y, A_PTS, B_PTS, RADIUS1))
+
+    def test_points_outside_circle(self):
+        X, Y = [0, 1, 2, 3, 10, 6], [0, 1, 2, 3, 10, 6]
+        A_PTS, B_PTS, RADIUS1 = 1, 1, 3
+        self.assertTrue(lic_8(X, Y, A_PTS, B_PTS, RADIUS1))
+
+    def test_points_inside_circle(self):
+        X, Y = [0, 1, 2, 3, 4, 5], [0, 1, 2, 3, 4, 5]
+        A_PTS, B_PTS, RADIUS1 = 1, 1, 10
+        self.assertFalse(lic_8(X, Y, A_PTS, B_PTS, RADIUS1))
 
 
 if __name__ == "__main__":

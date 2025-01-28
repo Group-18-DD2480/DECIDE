@@ -76,6 +76,37 @@ def lic_7(X, Y, K_PTS, LENGTH1) -> bool:
     return False
 
 
+def lic_8(X, Y, A_PTS, B_PTS, RADIUS1) -> bool:
+    """Check if any three points separated by A_PTS and B_PTS cannot be contained in a circle"""
+    if len(X) < 5:
+        return False
+
+    for i in range(len(X) - A_PTS - B_PTS - 2):
+        x1, y1 = X[i], Y[i]
+        x2, y2 = X[i + A_PTS + 1], Y[i + A_PTS + 1]
+        x3, y3 = X[i + A_PTS + B_PTS + 2], Y[i + A_PTS + B_PTS + 2]
+
+        # Calculate distances between points
+        a = calculate_distance(x1, y1, x2, y2)
+        b = calculate_distance(x2, y2, x3, y3)
+        c = calculate_distance(x3, y3, x1, y1)
+
+        # If points form a line, check if distance between furthest points > 2*RADIUS1
+        if (a + b == c) or (b + c == a) or (a + c == b):
+            if max(a, b, c) > 2 * RADIUS1:
+                return True
+            continue
+
+        # Calculate radius of circumscribed circle
+        s = (a + b + c) / 2  # Semi-perimeter
+        area = math.sqrt(s * (s - a) * (s - b) * (s - c))
+        radius = (a * b * c) / (4 * area)
+
+        if radius > RADIUS1:
+            return True
+    return False
+
+
 def lic_10(X, Y, E_PTS, F_PTS, AREA1):
     if (n := len(X)) < 5:
         return False
