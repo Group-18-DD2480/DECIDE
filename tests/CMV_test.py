@@ -1,7 +1,6 @@
 import unittest
-import unittest
 
-from CMV import *
+from src.CMV import *
 
 class TestLIC_4(unittest.TestCase):
     def test_insufficient_points(self):
