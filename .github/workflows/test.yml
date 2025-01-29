@@ -28,4 +28,5 @@ jobs:
 
     - name: Run unittest
       run: |
-        python -m unittest discover -s . -p 'CMV_test.py'
+        python -m unittest discover -s tests -p '*_test.py'
+        
