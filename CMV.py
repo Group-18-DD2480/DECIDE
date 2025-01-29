@@ -314,6 +314,3 @@ def lic_14(X, Y, E_PTS, F_PTS, AREA1, AREA2):
             return True
 
     return subcond1 and subcond2
-
-
-import math
