@@ -38,6 +38,8 @@ python -m unittest discover -s . -p '*_test.py'
 ```
 
 ## Usage
+To execute DECIDE please run:
+
 ```python
 python decide.py
 ```
@@ -47,14 +49,31 @@ Ensure that the input data, i.e radar tracking points and necessary parameters, 
 ...
 
 ## License
-...
+This project is licensed under MIT License. See `LICENSE` for details.
 
-## Contributors
-- [@AlessandroColi](https://github.com/AlessandroColi) - Alessandro Coli
-- [@eliasfloreteng](https://github.com/eliasfloreteng) - Elias Floreteng
-- [@laykos0](https://github.com/laykos0) - Jakub Rybak
-- [@RuriThomas](https://github.com/RuriThomas) - Ruri Osmon
-- [@YusufDemir1210](https://github.com/YusufDemir1210) - Yusuf Demir
-
-
-## 
+## Statement of Contributions
+#### [@AlessandroColi](https://github.com/AlessandroColi) - Alessandro Coli
+- [feat] Automated testing with GitHub actions.
+- [feat] Add `LIC13` and `LIC14`.
+- [feat] Add unit tests for `LIC13` and `LIC14`.
+- [doc] Create GitHub issues for the project.
+#### [@eliasfloreteng](https://github.com/eliasfloreteng) - Elias Floreteng
+- [feat] Add `LIC7`, `LIC8` and `LIC9`.
+- [feat] Add unit tests for `LIC7`, `LIC8` and `LIC9`.
+- [feat] VSCode settings for Python testing options.
+- [doc] Create basic `README.md`.
+- [refactor] Format files with `ruff`.
+#### [@laykos0](https://github.com/laykos0) - Jakub Rybak
+- [feat] Add `.gitignore` file.
+- [feat] Add `LIC10`, `LIC11` and `LIC12`.
+- [feat] Add unit tests for `LIC10`, `LIC11` and `LIC12`.
+- [doc] Create `UnitTest` blueprint for the project. 
+- [doc] Document project and contributions in `README.md`
+#### [@RuriThomas](https://github.com/RuriThomas) - Ruri Osmon
+- [feat] Add `LIC4`, `LIC5` and `LIC6`.
+- [feat] Add unit tests for `LIC4`, `LIC5` and `LIC6`.
+- [doc] Create GitHub issues for the project.
+#### [@YusufDemir1210](https://github.com/YusufDemir1210) - Yusuf Demir
+- [feat] Translate `decide.py` to Python.
+- [feat] Add `LIC0`, `LIC1`, `LIC2` and `LIC3`.
+- [feat] Add unit tests for `LIC0`, `LIC1`, `LIC2` and `LIC3`.
