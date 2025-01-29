@@ -1,6 +1,7 @@
 import unittest
 
 from CMV import lic_10, lic_11, lic_12
+from CMV import lic_7, lic_8, lic_9
 from CMV import lic_4, lic_5, lic_6
 
 
@@ -175,6 +176,70 @@ class TestLIC_12(unittest.TestCase):
         X, Y = [0, 10, 0, 1, 15, 2], [0, 0, 10, 1, 15, 2]
         K_PTS, LENGTH1, LENGTH2 = 1, 8, 2
         self.assertTrue(lic_12(X, Y, K_PTS, LENGTH1, LENGTH2))
+
+
+class TestLIC_7(unittest.TestCase):
+    def test_insufficient_points(self):
+        X, Y = [0, 1], [0, 1]
+        K_PTS, LENGTH1 = 1, 1
+        self.assertFalse(lic_7(X, Y, K_PTS, LENGTH1))
+
+    def test_distance_greater(self):
+        X, Y = [0, 1, 2, 5], [0, 1, 2, 5]
+        K_PTS, LENGTH1 = 1, 3
+        self.assertTrue(lic_7(X, Y, K_PTS, LENGTH1))
+
+    def test_distance_smaller(self):
+        X, Y = [0, 1, 2, 3], [0, 1, 2, 3]
+        K_PTS, LENGTH1 = 1, 5
+        self.assertFalse(lic_7(X, Y, K_PTS, LENGTH1))
+
+
+class TestLIC_8(unittest.TestCase):
+    def test_insufficient_points(self):
+        X, Y = [0, 1, 2, 3], [0, 1, 2, 3]
+        A_PTS, B_PTS, RADIUS1 = 1, 1, 1
+        self.assertFalse(lic_8(X, Y, A_PTS, B_PTS, RADIUS1))
+
+    def test_points_outside_circle(self):
+        X, Y = [0, 1, 2, 3, 10, 6], [0, 1, 2, 3, 10, 6]
+        A_PTS, B_PTS, RADIUS1 = 1, 1, 3
+        self.assertTrue(lic_8(X, Y, A_PTS, B_PTS, RADIUS1))
+
+    def test_points_inside_circle(self):
+        X, Y = [0, 1, 2, 3, 4, 5], [0, 1, 2, 3, 4, 5]
+        A_PTS, B_PTS, RADIUS1 = 1, 1, 10
+        self.assertFalse(lic_8(X, Y, A_PTS, B_PTS, RADIUS1))
+
+
+class TestLIC_9(unittest.TestCase):
+    def test_insufficient_points(self):
+        X, Y = [0, 1, 2, 3], [0, 1, 2, 3]
+        C_PTS, D_PTS, EPSILON = 1, 1, 0.1
+        self.assertFalse(lic_9(X, Y, C_PTS, D_PTS, EPSILON))
+
+    def test_angle_outside_bounds(self):
+        # Points that form a clear acute angle (~45°) with valid spacing:
+        # First point at (0,0), vertex at (2,2), last point at (4,2)
+        # With C_PTS=1 and D_PTS=1, this ensures correct point separation
+        X = [0, 1, 2, 3, 4]
+        Y = [0, 1, 2, 2, 2]
+        C_PTS, D_PTS, EPSILON = 1, 1, 0.1
+        self.assertTrue(lic_9(X, Y, C_PTS, D_PTS, EPSILON))
+
+    def test_angle_within_bounds(self):
+        # Points that form ~180° angle (within PI±EPSILON)
+        X = [-2, 1, 0, 1, 2]
+        Y = [0, 1, 0, -1, 0]
+        C_PTS, D_PTS, EPSILON = 1, 1, 0.1
+        self.assertFalse(lic_9(X, Y, C_PTS, D_PTS, EPSILON))
+
+    def test_coincident_points(self):
+        # Point coincides with vertex
+        X = [1, 0, 2, 0, 2]
+        Y = [1, 0, 2, 2, 2]
+        C_PTS, D_PTS, EPSILON = 1, 1, 0.1
+        self.assertFalse(lic_9(X, Y, C_PTS, D_PTS, EPSILON))
 
 
 if __name__ == "__main__":
