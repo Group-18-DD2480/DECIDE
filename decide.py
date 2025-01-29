@@ -54,7 +54,6 @@ NUMPOINTS = 0
 
 # Logical Connector Matrix
 LCM = []  # 2D array of CONNECTORS
-LCM2 = []
 
 # Preliminary Unlocking Matrix
 PUM = []  # 2D array of booleans

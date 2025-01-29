@@ -7,8 +7,7 @@ from CMV import lic_4, lic_5, lic_6
 
 
 class TestLIC_0(unittest.TestCase):
-    
-    # Tests for LIC0
+     # Tests for LIC0
     def test_LIC0_positive(self):
         # At least one pair with distance > LENGTH1
         X = [0,5,10]
@@ -29,6 +28,7 @@ class TestLIC_0(unittest.TestCase):
         Y = [0,0,4]
         LENGTH1 = 5.0
         self.assertFalse(lic_0(X, Y, LENGTH1))
+
 
 class TestLIC_1(unittest.TestCase):
     # Tests for LIC1
@@ -101,6 +101,12 @@ class TestLIC_3(unittest.TestCase):
         Y = [0,1,2]
         AREA1 = 0.5
         self.assertFalse(lic_3(X, Y, AREA1))
+
+
+
+    
+
+
 
 
 class TestLIC_4(unittest.TestCase):
