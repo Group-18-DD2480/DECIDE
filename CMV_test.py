@@ -16,10 +16,17 @@ class TestLICs(unittest.TestCase):
         setup_DECIDE(points, parameters)
         self.assertTrue(DECIDE.LIC0())
 
-    def test_LIC0_negative(self):
+    def test_LIC0_negative1(self):
         # No pair with distance > LENGTH1
         points = [(0, 0), (3, 0), (5, 0)]
         parameters = {'LENGTH1': 6}
+        setup_DECIDE(points, parameters)
+        self.assertFalse(DECIDE.LIC0())
+
+    def test_LIC0_negative2(self):
+        # No pair with distance > LENGTH1
+        points = [(0, 0), (3, 0), (0, 4)]
+        parameters = {'LENGTH1': 5}
         setup_DECIDE(points, parameters)
         self.assertFalse(DECIDE.LIC0())
 
@@ -31,10 +38,17 @@ class TestLICs(unittest.TestCase):
         setup_DECIDE(points, parameters)
         self.assertTrue(DECIDE.LIC1())
 
-    def test_LIC1_negative(self):
+    def test_LIC1_negative1(self):
         # All sets of three points are within a circle of RADIUS1
         points = [(0, 0), (1, 0), (0, 1)]
         parameters = {'RADIUS1': 2.0}
+        setup_DECIDE(points, parameters)
+        self.assertFalse(DECIDE.LIC1())
+
+    def test_LIC1_negative2(self):
+        # All sets of three points are within a circle of RADIUS1
+        points = [(0, 0), (2, 0), (0, 2)]
+        parameters = {'RADIUS1': 7}
         setup_DECIDE(points, parameters)
         self.assertFalse(DECIDE.LIC1())
 
