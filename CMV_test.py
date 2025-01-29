@@ -6,7 +6,7 @@ from CMV import lic_7, lic_8, lic_9
 from CMV import lic_4, lic_5, lic_6
 
 
-class TestLICs(unittest.TestCase): # includes tests for LIC 0,1,2,3
+class TestLIC_0(unittest.TestCase):
     
     # Tests for LIC0
     def test_LIC0_positive(self):
@@ -30,6 +30,7 @@ class TestLICs(unittest.TestCase): # includes tests for LIC 0,1,2,3
         LENGTH1 = 5.0
         self.assertFalse(lic_0(X, Y, LENGTH1))
 
+class TestLIC_1(unittest.TestCase):
     # Tests for LIC1
     def test_LIC1_positive(self):
         # A set of three points not contained within a circle of RADIUS1
@@ -52,6 +53,7 @@ class TestLICs(unittest.TestCase): # includes tests for LIC 0,1,2,3
         RADIUS1 = 7.0
         self.assertFalse(lic_1(X, Y, RADIUS1))
 
+class TestLIC_2(unittest.TestCase):
     # Tests for LIC2
     def test_LIC2_positive(self):
         # Angle less than (PI - EPSILON)
@@ -75,6 +77,7 @@ class TestLICs(unittest.TestCase): # includes tests for LIC 0,1,2,3
         self.assertFalse(lic_2(X, Y, EPSILON))
 
 
+class TestLIC_3(unittest.TestCase):
     # Tests for LIC3
     def test_LIC3_positive(self):
         # A triangle with area greater than AREA1

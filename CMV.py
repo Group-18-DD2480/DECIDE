@@ -62,7 +62,7 @@ def lic_2(X, Y, EPSILON, PI = 3.1415926535):
         p1, p2, p3 = (X[i], Y[i]), (X[i+1], Y[i+1]), (X[i+2], Y[i+2])
         if p2 == p1 or p2 == p3: continue # angle is undefined
         
-        angle = angle_between_vectors(p2-p1, p2-p3)
+        angle = angle_between_vectors((p2[0] - p1[0], p2[1] - p1[1]), (p2[0] - p3[0], p2[1] - p3[1]))
         if angle < PI - EPSILON or angle > PI + EPSILON:
             return True
     
