@@ -1,11 +1,97 @@
 import math
-
 EPSILON = 1e-7  # Small tolerance for floating point comparisons
 
 def calculate_distance(x1, y1, x2, y2):
     """Calculate the distance between two points (x1, y1) and (x2, y2)."""
     return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
 
+def calculate_area(x1, y1, x2, y2, x3, y3):
+    """Calculate the area of a triangle given three points (x1, y1), (x2, y2), (x3, y3)."""
+    return abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2
+
+def lic_0(X, Y, LENGTH1) -> bool:
+    for i in range(len(X) - 1):
+        if calculate_distance(X[i], Y[i], X[i+1], Y[i+1]) > LENGTH1:
+            return True
+        
+    return False # no such set of points exists
+
+
+def lic_1(X, Y, RADIUS1) -> bool:
+    def circumcircle_radius(px1, py1, px2, py2, px3, py3):
+        # Calculate pairwise distances
+        a = calculate_distance(px1, py1, px2, py2)
+        b = calculate_distance(px1, py1, px3, py3)
+        c = calculate_distance(px2, py2, px3, py3)
+
+        # Semi-perimeter
+        s = (a + b + c) / 2
+
+        # Area of the triangle using Heron's formula
+        try:
+            area = math.sqrt(s * (s - a) * (s - b) * (s - c))
+        except ValueError:
+            return float('inf')
+
+        # Circumcircle radius formula: R = (abc) / (4 * area)
+        if area == 0:
+            return float('inf')  # Points are collinear
+
+        R = (a * b * c) / (4 * area)
+        return R
+    
+    for i in range(len(X) - 2):
+        R = circumcircle_radius(X[i], Y[i], X[i+1], Y[i+1], X[i+2], Y[i+2])
+        if R > RADIUS1:
+            return True
+    return False # no such set of points exists
+
+
+def lic_2(X, Y, EPSILON, PI = 3.1415926535):
+    def angle_between_vectors(v1, v2):
+        dot_product = v1[0] * v2[0] + v1[1] * v2[1]
+        magnitude_v1 = math.sqrt(v1[0]**2 + v1[1]**2)
+        magnitude_v2 = math.sqrt(v2[0]**2 + v2[1]**2)
+
+        # Avoid division by zero
+        if magnitude_v1 == 0 or magnitude_v2 == 0:
+            raise ValueError("One or both vectors have zero magnitude.")
+
+        cos_theta = dot_product / (magnitude_v1 * magnitude_v2)
+        cos_theta = max(-1, min(1, cos_theta))  # Clamp value to avoid numerical errors
+
+        return math.acos(cos_theta)
+    
+    for i in range(len(X) - 2):
+        p1, p2, p3 = (X[i], Y[i]), (X[i+1], Y[i+1]), (X[i+2], Y[i+2])
+        if p2 == p1 or p2 == p3: continue # angle is undefined
+        
+        angle = angle_between_vectors((p2[0] - p1[0], p2[1] - p1[1]), (p2[0] - p3[0], p2[1] - p3[1]))
+        if angle < PI - EPSILON or angle > PI + EPSILON:
+            return True
+    
+    return False # no such set of points exists
+
+
+def lic_3(X, Y, AREA1):
+    def triangle_area(point1, point2, point3):
+        x1, y1 = point1
+        x2, y2 = point2
+        x3, y3 = point3
+
+        # Using the determinant formula for the area of a triangle
+        area = abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2
+        return area
+    
+    for i in range(len(X) - 2):      
+        p1, p2, p3 = (X[i], Y[i]), (X[i+1], Y[i+1]), (X[i+2], Y[i+2])
+        if p2 == p1 or p2 == p3: continue # angle is undefined
+
+        area = triangle_area(p1, p2, p3)
+        if area > AREA1:
+            return True
+    
+    return False # no such set of points exists
 
 def lic_4(X, Y, Q_PTS, QUADS) -> bool:
     def quadrant(px, py) -> int:
@@ -191,20 +277,10 @@ def lic_12(X, Y, K_PTS, LENGTH1, LENGTH2):
             l = l if l else ab < LENGTH2
             if g and l:
                 return True
-    return False    
-
-def calculate_distance(x1, y1, x2, y2):
-    """Calculate the distance between two points (x1, y1) and (x2, y2)."""
-    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
-    
-def calculate_area(x1, y1, x2, y2, x3, y3):
-    """Calculate the area of a triangle given three points (x1, y1), (x2, y2), (x3, y3)."""
-    return abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2
-
+    return False
 def lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2):
     """
     Determine if LIC 13 is met.
-
     Parameters:
     - X: List of X coordinates.
     - Y: List of Y coordinates.
@@ -212,14 +288,13 @@ def lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2):
     - B_PTS: Number of intervening points between the second and third points.
     - RADIUS1: Radius for the first circle condition.
     - RADIUS2: Radius for the second circle condition.
-
     Returns:
     - Boolean indicating if LIC 13 is met.
     """
-    
+
     subcond1 = False
     subcond2 = False
-    
+
     if RADIUS1 < 0: 
         return False
     if RADIUS2 < 0: 
@@ -228,14 +303,14 @@ def lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2):
         return False
     if A_PTS + B_PTS + 3 > n:
         return False
-    
+
     for a in range(n):
         b = a + A_PTS + 1
         c = b + B_PTS + 1
-    
+
         if(c>=n):
             break
-    
+
         ab = calculate_distance(X[a], Y[a], X[b], Y[b])
         bc = calculate_distance(X[b], Y[b], X[c], Y[c])
         ca = calculate_distance(X[a], Y[a], X[c], Y[c])
@@ -246,7 +321,7 @@ def lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2):
             dist = max(ab,bc,ca)
         else:
             dist = (ab * bc * ca) / (4 * area) # Calculate the circumradius
-            
+
         # Check if dist is greater than RADIUS1 with a tolerance
         if dist > RADIUS1 + EPSILON:
             subcond1 = True
@@ -264,7 +339,6 @@ def lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2):
 def lic_14(X, Y, E_PTS, F_PTS, AREA1, AREA2):
     """
     Determine if LIC 14 is met.
-
     Parameters:
     - X: List of X coordinates.
     - Y: List of Y coordinates.
@@ -272,13 +346,12 @@ def lic_14(X, Y, E_PTS, F_PTS, AREA1, AREA2):
     - F_PTS: Number of intervening points between the second and third points.
     - AREA1: Area for the first triangle condition.
     - AREA2: Area for the second triangle condition.
-
     Returns:
     - Boolean indicating if LIC 14 is met.
     """
     subcond1 = False
     subcond2 = False
-    
+
     if AREA1 < 0: 
         return False
     if AREA2 < 0: 
@@ -287,20 +360,20 @@ def lic_14(X, Y, E_PTS, F_PTS, AREA1, AREA2):
         return False
     if E_PTS + F_PTS + 3 > n:
         return False
-    
+
     for a in range(n):
         b = a + E_PTS + 1
         c = b + F_PTS + 1
-    
+
         if(c>=n):
             break
-    
+
         ab = calculate_distance(X[a], Y[a], X[b], Y[b])
         bc = calculate_distance(X[b], Y[b], X[c], Y[c])
         ca = calculate_distance(X[a], Y[a], X[c], Y[c])
 
         area = calculate_area(X[a], Y[a], X[b], Y[b], X[c], Y[c])
-            
+
         # Check if area is greater than AREA1 with a tolerance
         if area > AREA1 + EPSILON:
             subcond1 = True

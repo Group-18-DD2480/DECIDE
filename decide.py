@@ -1,24 +1,21 @@
 # CONSTANT
 PI = 3.1415926535
 
-
 # TYPE DECLARATIONS
 class CONNECTORS:
-    def NOTUSED(i=None, j=None):
+    def NOTUSED(i = None, j = None):
         return None
-
-    def ANDD(i, j):
+    
+    def ANDD(i,j):
         return i and j
 
-    def ORR(i, j):
+    def ORR(i,j):
         return i or j
-
 
 class COMPTYPE:
     LT = 1111
     EQ = 1112
     GT = 1113
-
 
 # PARAMETERS T
 class PARAMETERS_T:
@@ -43,7 +40,6 @@ class PARAMETERS_T:
         self.RADIUS2 = 0.0  # Maximum radius in LIC 13
         self.AREA2 = 0.0  # Maximum area in LIC 14
 
-
 # Global variable declarations
 PARAMETERS = PARAMETERS_T()
 
@@ -58,7 +54,6 @@ NUMPOINTS = 0
 
 # Logical Connector Matrix
 LCM = []  # 2D array of CONNECTORS
-LCM2 = []
 
 # Preliminary Unlocking Matrix
 PUM = []  # 2D array of booleans
@@ -71,7 +66,6 @@ FUV = []  # Array of booleans
 
 # Decision: Launch or No Launch
 LAUNCH = False
-
 
 def DECIDE():
     """Function we must write."""
