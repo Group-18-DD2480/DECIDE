@@ -1,4 +1,7 @@
 from CMV import *
+import PUM
+import FUV
+
 # CONSTANT
 PI = 3.1415926535
 
@@ -57,13 +60,16 @@ NUMPOINTS = 0
 LCM = []  # 2D array of CONNECTORS
 
 # Preliminary Unlocking Matrix
-PUM = []  # 2D array of booleans
+PUM_value = []  # 2D array of booleans
+
+#  Preliminary Unlocking Vector.
+PUV = [] # Array of booleans
 
 # Conditions Met Vector
 CMV = []  # Array of booleans
 
 # Final Unlocking Vector
-FUV = []  # Array of booleans
+FUV_value = []  # Array of booleans
 
 # Decision: Launch or No Launch
 LAUNCH = False
@@ -76,23 +82,44 @@ class InvalidInputException(Exception):
 
 def DECIDE():
     CMV = [
-        lic_0(X, Y, PARAMETERS_T.LENGTH1),
-        lic_1(X, Y, PARAMETERS_T.RADIUS1),
-        lic_2(X, Y, PARAMETERS_T.EPSILON),
-        lic_3(X, Y, PARAMETERS_T.AREA1),
-        lic_4(X, Y, PARAMETERS_T.Q_PTS, PARAMETERS_T.QUADS),
+        lic_0(X, Y, PARAMETERS.LENGTH1),
+        lic_1(X, Y, PARAMETERS.RADIUS1),
+        lic_2(X, Y, PARAMETERS.EPSILON),
+        lic_3(X, Y, PARAMETERS.AREA1),
+        lic_4(X, Y, PARAMETERS.QPTS, PARAMETERS.QUADS),
         lic_5(X, Y),
-        lic_6(X, Y, PARAMETERS_T.N_PTS, PARAMETERS_T.DIST),
-        lic_7(X, Y, PARAMETERS_T.K_PTS, PARAMETERS_T.LENGHT1),
-        lic_8(X, Y, PARAMETERS_T.A_PTS, PARAMETERS_T.B_PTS, PARAMETERS_T.RAIDUS1),
-        lic_9(X, Y, PARAMETERS_T.C_PTS, PARAMETERS_T.D_PTS, PARAMETERS_T.EPSILON),
-        lic_10(X, Y, PARAMETERS_T.E_PTS, PARAMETERS_T.F_PTS, PARAMETERS_T.AREA1),
-        lic_11(X, PARAMETERS_T.G_PTS),
-        lic_12(X, Y, PARAMETERS_T.K_PTS, PARAMETERS_T.LENGTH1, PARAMETERS_T.LENGTH2),
-        lic_13(X, Y, PARAMETERS_T.A_PTS, PARAMETERS_T.B_PTS, PARAMETERS_T.RADIUS1, PARAMETERS_T.RADIUS2),
-        lic_14(X, Y, PARAMETERS_T.E_PTS, PARAMETERS_T.F_PTS, PARAMETERS_T.AREA1, PARAMETERS_T.AREA2),
+        lic_6(X, Y, PARAMETERS.NPTS, PARAMETERS.DIST),
+        lic_7(X, Y, PARAMETERS.KPTS, PARAMETERS.LENGTH1),
+        lic_8(X, Y, PARAMETERS.APTS, PARAMETERS.BPTS, PARAMETERS.RADIUS1),
+        lic_9(X, Y, PARAMETERS.CPTS, PARAMETERS.DPTS, PARAMETERS.EPSILON),
+        lic_10(X, Y, PARAMETERS.EPTS, PARAMETERS.FPTS, PARAMETERS.AREA1),
+        lic_11(X, PARAMETERS.GPTS),
+        lic_12(X, Y, PARAMETERS.KPTS, PARAMETERS.LENGTH1, PARAMETERS.LENGTH2),
+        lic_13(X, Y, PARAMETERS.APTS, PARAMETERS.BPTS, PARAMETERS.RADIUS1, PARAMETERS.RADIUS2),
+        lic_14(X, Y, PARAMETERS.EPTS, PARAMETERS.FPTS, PARAMETERS.AREA1, PARAMETERS.AREA2),
     ]
     
-    #TODO: continue after impl of PUM and FUV
+    PUM_value = PUM.PUM(LCM, CMV)
+    
+    FUV_value = FUV.FUV(PUM_value,PUV)
+    
+    #TODO wait for launch function impl then call it and print
+    
+    print("CMV (Conditions Met Vector):")
+    print(CMV)
+    print("\n")
+    
+    print("PUM (Preliminary Unlocking Matrix):")
+    for row in PUM_value:
+        print(row)
+    print("\n")
+    
+    print("FUV (Final Unlocking Vector):")
+    print(FUV_value)
+    print("\n")
     
     pass
+
+if __name__ == "__main__":
+    DECIDE()
+
