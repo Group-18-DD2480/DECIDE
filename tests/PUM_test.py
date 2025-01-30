@@ -1,6 +1,6 @@
 import unittest
-from src.decide import CONNECTORS, InvalidInputException
 from src.PUM import PUM
+from src.decide import CONNECTORS, InvalidInputException
 
 class TestPUM(unittest.TestCase):
     def test_PUM_ok(self):
@@ -9,10 +9,10 @@ class TestPUM(unittest.TestCase):
             [CONNECTORS.NOTUSED, CONNECTORS.ANDD, CONNECTORS.ANDD],
             [CONNECTORS.ORR, CONNECTORS.ANDD ,CONNECTORS.ANDD ]]
         expected_PUM = [[None, True, True],
-            [None, None, False],
+            [True, None, False],
             [True, False, None]]
         
-        result_PUM = PUM(CMV,LCM,3)
+        result_PUM = PUM(LCM,CMV)
         
         self.assertEqual(expected_PUM, result_PUM)
         
@@ -22,7 +22,7 @@ class TestPUM(unittest.TestCase):
             [CONNECTORS.NOTUSED, CONNECTORS.ANDD, CONNECTORS.ANDD],
             [CONNECTORS.ORR, CONNECTORS.ANDD ,CONNECTORS.ANDD ]]
         
-        self.assertRaises(InvalidInputException, PUM, CMV, LCM, 3)
+        self.assertRaises(InvalidInputException, PUM, LCM, CMV)
         
     def test_PUM_not_simmetric(self):
         CMV = [ True , False, True ]
@@ -30,5 +30,5 @@ class TestPUM(unittest.TestCase):
             [CONNECTORS.NOTUSED, CONNECTORS.ANDD, CONNECTORS.ANDD],
             [CONNECTORS.ANDD, CONNECTORS.ORR ,CONNECTORS.ANDD ]]
         
-        self.assertRaises(InvalidInputException, PUM, CMV, LCM, 3)
+        self.assertRaises(InvalidInputException, PUM, LCM, CMV)
         
