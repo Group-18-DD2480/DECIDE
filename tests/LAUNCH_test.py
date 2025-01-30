@@ -17,4 +17,4 @@ class Test_LAUNCH(unittest.TestCase):
     def test_LAUNCH_invalid(self):
         # size of FUV is not correct
         FUV = [True, True]
-        self.assertRaises(InvalidInputException)
+        self.assertRaises(InvalidInputException, LAUNCH, FUV)
