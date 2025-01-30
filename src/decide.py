@@ -67,6 +67,12 @@ FUV = []  # Array of booleans
 # Decision: Launch or No Launch
 LAUNCH = False
 
+class InvalidInputException(Exception):
+    """Custom exception for invalid input."""
+    def __init__(self, message="Invalid input provided"):
+        self.message = message
+        super().__init__(self.message)
+
 def DECIDE():
     """Function we must write."""
     pass
