@@ -4,7 +4,7 @@ PI = 3.1415926535
 # TYPE DECLARATIONS
 class CONNECTORS:
     def NOTUSED(i = None, j = None):
-        return None
+        return True
     
     def ANDD(i,j):
         return i and j
@@ -66,6 +66,12 @@ FUV = []  # Array of booleans
 
 # Decision: Launch or No Launch
 LAUNCH = False
+
+class InvalidInputException(Exception):
+    """Custom exception for invalid input."""
+    def __init__(self, message="Invalid input provided"):
+        self.message = message
+        super().__init__(self.message)
 
 def DECIDE():
     """Function we must write."""
