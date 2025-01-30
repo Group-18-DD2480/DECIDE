@@ -81,6 +81,28 @@ class InvalidInputException(Exception):
         super().__init__(self.message)
 
 def DECIDE():
+    """
+    Determines the final launch decision based on the given input data.
+
+    This function processes global variables and computes intermediate results to decide 
+    whether a launch should proceed. The decision is printed as "YES" or "NO".
+
+    Global Variables Used:
+        NUMPOINTS (int): The number of planar data points.
+        X and Y: Arrays containing the coordinates of data points.
+        PARAMETERS: Holds parameters for LICs (Launch Interceptor Conditions).
+        LCM (list of list of connectors): Logical Connector Matrix defining conditions between LICs.
+        PUV (list of bool): Preliminary Unlocking Vector controlling PUM evaluation.
+
+    Intermediate Results:
+        CMV (list of bool): Conditions Met Vector indicating which LICs are met.
+        PUM (list of list of bool): Preliminary Unlocking Matrix, computed using LCM and CMV.
+        FUV (list of bool): Final Unlocking Vector derived from PUM and PUV.
+
+    Output:
+        Prints the final launch decision ("YES" or "NO") to standard output.
+    """
+    
     CMV = [
         lic_0(X, Y, PARAMETERS.LENGTH1),
         lic_1(X, Y, PARAMETERS.RADIUS1),
