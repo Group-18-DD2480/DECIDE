@@ -55,42 +55,50 @@ python decide.py
 
 Ensure that the input data, i.e radar tracking points and necessary parameters, is correctly set within `decide.py` file before execution.
 
-## Essence Checklist
+## Way of working & Essence checklist
 
-...
+Our team's way of working has just reached the "In Use" state according to the Essence framework. We have established clear principles for collaboration including standardized commit message and PR formats, code review processes, and GitHub Actions for running the tests on each commit. Our practices and tools are actively being used for real work, with regular inspections through pull requests and code reviews. The team has adapted practices to fit our context, such as using GitHub issues, PRs and maintaining clear documentation. Communication and collaboration are done through WhatsApp, Discord and issue comments.
 
+## Contribution Style
 
+Contributions to the repository should follow the structure outlined below.
 
-## Contribution Style  
-Contributions to the repository should follow the structure outlined below.  
+### **Prefixes**
 
-### **Prefixes**  
-Use one of the following prefixes to categorize the changes:  
-- `feat` – Adding a new feature  
-- `fix` – Fixing a bug  
-- `doc` – Writing documentation  
-- `refactor` – Improving existing code 
+Use one of the following prefixes to categorize the changes:
 
-### **Commit Messages**  
-Commit messages should follow the format:  
-```  
-[prefix] Commit message (#issue1, #issue2)  
-```  
-Relevant issue numbers should be included in the parentheses.  
+- `feat` – Adding a new feature
+- `fix` – Fixing a bug
+- `doc` – Writing documentation
+- `refactor` – Improving existing code
 
-### **Pull Requests**  
-Pull request titles should follow the prefix structure:  
-```  
-[prefix] PR title  
-```  
-All relevant issues should be linked in the description of the PR.  
+### **Commit Messages**
 
-### **Merge Strategy**  
-Use **Squash and Merge** policy and ensure the final commit message follows the correct format before merging.  
+Commit messages should follow the format:
+
+```
+[prefix] Commit message (#issue1, #issue2)
+```
+
+Relevant issue numbers should be included in the parentheses.
+
+### **Pull Requests**
+
+Pull request titles should follow the prefix structure:
+
+```
+[prefix] PR title
+```
+
+All relevant issues should be linked in the description of the PR.
+
+### **Merge Strategy**
+
+Use **Squash and Merge** policy and ensure the final commit message follows the correct format before merging.
 
 ### Code Review
-Reviever of the Pull Request is responsible for the merger.
 
+Reviever of the Pull Request is responsible for the merger.
 
 ## License
 
