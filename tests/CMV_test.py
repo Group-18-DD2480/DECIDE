@@ -1,6 +1,22 @@
 import unittest
 
-from src.CMV import *
+from src.CMV import (
+    lic_0,
+    lic_1,
+    lic_2,
+    lic_3,
+    lic_4,
+    lic_5,
+    lic_6,
+    lic_7,
+    lic_8,
+    lic_9,
+    lic_10,
+    lic_11,
+    lic_12,
+    lic_13,
+    lic_14,
+)
 
 
 class TestLIC_0(unittest.TestCase):
