@@ -74,9 +74,9 @@ Use one of the following prefixes to categorize the changes:
 ### **Commit Messages**  
 Commit messages should follow the format:  
 ```  
-[prefix] Commit message (#issue1, #issue2)  
+[prefix] Commit message (#PR)  
 ```  
-Relevant issue numbers should be included in the parentheses.  
+Relevant issue numbers should be included in the squashed commit description.  
 
 ### **Pull Requests**  
 Pull request titles should follow the prefix structure:  
