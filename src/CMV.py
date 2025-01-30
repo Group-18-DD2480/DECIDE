@@ -10,6 +10,14 @@ def calculate_area(x1, y1, x2, y2, x3, y3):
     return abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2
 
 def lic_0(X, Y, LENGTH1) -> bool:
+    """Checks if there exists two consecutive points further apart than LENGTH1
+    \nParameters:
+    - X: List of X coordinates
+    - Y: List of Y coordinates
+    - LENGTH1: Float
+    \nReturns:
+    - Boolean indicating if the set exists.
+    """
     for i in range(len(X) - 1):
         if calculate_distance(X[i], Y[i], X[i+1], Y[i+1]) > LENGTH1:
             return True
@@ -18,6 +26,14 @@ def lic_0(X, Y, LENGTH1) -> bool:
 
 
 def lic_1(X, Y, RADIUS1) -> bool:
+    """Checks if there exists a set of 3 consecutive points that cannot be contained in a circle of radius RADIUS1
+    \nParameters:
+    - X: List of X coordinates
+    - Y: List of Y coordinates
+    - RADIUS1: Float for radius
+    \nReturns:
+    - Boolean indicating if the set exists.
+    """
     def circumcircle_radius(px1, py1, px2, py2, px3, py3):
         # Calculate pairwise distances
         a = calculate_distance(px1, py1, px2, py2)
@@ -47,7 +63,17 @@ def lic_1(X, Y, RADIUS1) -> bool:
     return False # no such set of points exists
 
 
-def lic_2(X, Y, EPSILON, PI = 3.1415926535):
+def lic_2(X, Y, EPSILON, PI = 3.1415926535) -> bool:
+    """Checks is there exists a set of three consecutive points that form an angle smaller than PI-EPSILON or larger than PI+EPSILON
+    with the second point being the vertex of the angle
+    \nParameters:
+    - X: List of X coordinates
+    - Y: List of Y coordinates
+    - EPSILON: Angle in radians
+    - PI: optional value for PI, defaults to value of pi
+    \nReturns:
+    - Boolean indicating if the set exists.
+    """
     def angle_between_vectors(v1, v2):
         dot_product = v1[0] * v2[0] + v1[1] * v2[1]
         magnitude_v1 = math.sqrt(v1[0]**2 + v1[1]**2)
@@ -73,7 +99,15 @@ def lic_2(X, Y, EPSILON, PI = 3.1415926535):
     return False # no such set of points exists
 
 
-def lic_3(X, Y, AREA1):
+def lic_3(X, Y, AREA1) -> bool:
+    """Checks the existence of a set of three consecutive points that form a triangle with an area greater than AREA1
+    \nParameters:
+    - X: List of X coordinates
+    - Y: List of Y coordinates
+    - AREA1: Float for area
+    \nReturns:
+    - Boolean indicating if the set exists.
+    """
     def triangle_area(point1, point2, point3):
         x1, y1 = point1
         x2, y2 = point2
@@ -94,6 +128,17 @@ def lic_3(X, Y, AREA1):
     return False # no such set of points exists
 
 def lic_4(X, Y, Q_PTS, QUADS) -> bool:
+    """Checks for the existence of a set of Q_PTS consecutive points such that they lie within more than QUADS quadrants.
+    In the case of points on borders, priority should be given to the smallest quadrant number, which start at 1 in the (+,+) quadrant and go counter-clockwise
+    \nParameters:
+    - X: List of X coordinates
+    - Y: List of Y coordinates
+    - Q_PTS: Number of points to consider
+    - QUADS: Number of quadrants (0 <= QUADS <= 3)
+    \nReturns:
+    - Boolean indicating if the set exists.
+    """
+    
     def quadrant(px, py) -> int:
         if px >= 0 and py >= 0:
             return 0
@@ -120,6 +165,14 @@ def lic_4(X, Y, Q_PTS, QUADS) -> bool:
 
 
 def lic_5(X, Y) -> bool:
+    """Checks for two consecutive points where the second point's x coordinate is smaller than the first's
+    \nParameters:
+    - X: List of X coordinates
+    - Y: List of Y coordinates
+    \nReturns:
+    - Boolean indicating if the set exists.
+    """
+    
     if len(X) < 2:
         return False
     for i in range(len(X) - 1):
@@ -129,6 +182,15 @@ def lic_5(X, Y) -> bool:
 
 
 def lic_6(X, Y, N_PTS, DIST) -> bool:
+    """Checks the existence of a set of N_PTS consecutive points such that at least one point is at a distance greater than DIST from the line that joins the first and last points.
+    \nParameters:
+    - X: List of X coordinates
+    - Y: List of Y coordinates
+    - N_PTS: Number of points to consider (3 <= N_PTS )
+    - DIST: Float for distance (0 <= DIST)
+    \nReturns:
+    - Boolean indicating if the set exists.
+    """
     if len(X) < 3 or len(X) < N_PTS:
         return False
     for i in range(len(X) - N_PTS + 1):
@@ -152,7 +214,15 @@ def lic_6(X, Y, N_PTS, DIST) -> bool:
 
 
 def lic_7(X, Y, K_PTS, LENGTH1) -> bool:
-    """Check if there are two points separated by K_PTS points with distance > LENGTH1"""
+    """Check if there are two points separated by K_PTS points with distance > LENGTH1
+    \nParameters
+    - X: List of X coordinates
+    - Y: List of Y coordinates
+    - K_PTS: Number of points to consider (1 <= K_PTS )
+    - LENGTH1: Float for distance
+    \nReturns:
+    - Boolean indicating if the set exists.
+    """
     if len(X) < 3:
         return False
 
@@ -164,7 +234,16 @@ def lic_7(X, Y, K_PTS, LENGTH1) -> bool:
 
 
 def lic_8(X, Y, A_PTS, B_PTS, RADIUS1) -> bool:
-    """Check if any three points separated by A_PTS and B_PTS cannot be contained in a circle"""
+    """Check if any three points separated by A_PTS and B_PTS cannot be contained in a circle
+    \nParameters
+    - X: List of X coordinates
+    - Y: List of Y coordinates
+    - A_PTS: Number of points between first and second point (1 <= A_PTS )
+    - B_PTS: Number of points between second and third point (1 <= B_PTS )
+    - RADIUS1: Float for radius
+    \nReturns:
+    - Boolean indicating if the set exists.
+    """
     if len(X) < 5:
         return False
 
@@ -195,7 +274,16 @@ def lic_8(X, Y, A_PTS, B_PTS, RADIUS1) -> bool:
 
 
 def lic_9(X, Y, C_PTS, D_PTS, EPSILON) -> bool:
-    """Check if three points separated by C_PTS and D_PTS form an angle outside [PI±EPSILON]"""
+    """Check if there exists three points separated by C_PTS and D_PTS form an angle outside [PI±EPSILON]
+    \nParameters
+    - X: List of X coordinates
+    - Y: List of Y coordinates
+    - C_PTS: Number of points between first and second point (1 <= C_PTS )
+    - D_PTS: Number of points between second and third point (1 <= D_PTS )
+    - EPSILON: Angle in radians
+    \nReturns:
+    - Boolean indicating if the set exists.
+    """
     if len(X) < 5:
         return False
 
@@ -231,7 +319,17 @@ def lic_9(X, Y, C_PTS, D_PTS, EPSILON) -> bool:
     return False
 
 
-def lic_10(X, Y, E_PTS, F_PTS, AREA1):
+def lic_10(X, Y, E_PTS, F_PTS, AREA1) -> bool:
+    """Check if there exists three points separated by E_PTS and F_PTS form a triangle of area greater than AREA1
+    \nParameters:
+    - X: List of X coordinates
+    - Y: List of Y coordinates
+    - E_PTS: Number of points between first and second point (1 <= E_PTS )
+    - F_PTS: Number of points between second and third point (1 <= F_PTS )
+    - AREA1: Float for the area
+    \nReturns:
+    - Boolean indicating if the set exists.
+    """
     if (n := len(X)) < 5:
         return False
     for a in range(n):
@@ -256,7 +354,14 @@ def lic_10(X, Y, E_PTS, F_PTS, AREA1):
     return False
 
 
-def lic_11(X, G_PTS):
+def lic_11(X, G_PTS) -> bool:
+    """Checks if there exists 2 points separated by G_PTS points such that the second point's x coordinate is smaller than the first's
+    \nParameters:
+    - X: List of X coordinates
+    - G_PTS: Number of points between first and second point (1 <= G_PTS)
+    \nReturns:
+    - Boolean indicating if the set exists.
+    """
     if (n := len(X)) < 3:
         return False
     for a in range(n):
@@ -266,7 +371,18 @@ def lic_11(X, G_PTS):
     return False
 
 
-def lic_12(X, Y, K_PTS, LENGTH1, LENGTH2):
+def lic_12(X, Y, K_PTS, LENGTH1, LENGTH2) -> bool:
+    """Checks if there exists two sets of two points both separated by K_PTS that are at 
+    a distance greater than LENGTH1 for the first set and are a distance lesser than LENGTH2 for the second set.
+    \nParameters:
+    - X: List of X coordinates
+    - Y: List of Y coordinates
+    - K_PTS: Number of points between first and second point (1 <= K_PTS)
+    - LENGTH1: Distance for first set
+    - LENGTH2: Distance for second set
+    \nReturns:
+    - Boolean indicating if both sets exist.
+    """
     if (n := len(X)) < 3:
         return False
     g, l = False, False
@@ -280,16 +396,18 @@ def lic_12(X, Y, K_PTS, LENGTH1, LENGTH2):
     return False
 def lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2):
     """
-    Determine if LIC 13 is met.
-    Parameters:
+    Checks if there exists two sets of three points both separated by A_PTS and B_PTS 
+    such that the first set of points cannot be contained within a circle of radius RADIUS1 
+    and the second set of points can be contained within a circle of radius RADIUS2.
+    \nParameters:
     - X: List of X coordinates.
     - Y: List of Y coordinates.
     - A_PTS: Number of intervening points between the first and second points.
     - B_PTS: Number of intervening points between the second and third points.
     - RADIUS1: Radius for the first circle condition.
     - RADIUS2: Radius for the second circle condition.
-    Returns:
-    - Boolean indicating if LIC 13 is met.
+    \nReturns:
+    - Boolean indicating if both sets exist.
     """
 
     subcond1 = False
@@ -338,16 +456,18 @@ def lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2):
 
 def lic_14(X, Y, E_PTS, F_PTS, AREA1, AREA2):
     """
-    Determine if LIC 14 is met.
-    Parameters:
+    Checks if there exists two sets of three points both separated by E_PTS and F_PTS 
+    such that the first set of points form a triangle of area greater than AREA1 
+    and the second set of points form a triangle of with area less than AREA2.
+    \nParameters:
     - X: List of X coordinates.
     - Y: List of Y coordinates.
     - E_PTS: Number of intervening points between the first and second points.
     - F_PTS: Number of intervening points between the second and third points.
     - AREA1: Area for the first triangle condition.
     - AREA2: Area for the second triangle condition.
-    Returns:
-    - Boolean indicating if LIC 14 is met.
+    \nReturns:
+    - Boolean indicating if both sets exist.
     """
     subcond1 = False
     subcond2 = False
