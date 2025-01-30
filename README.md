@@ -72,15 +72,15 @@ Use one of the following prefixes to categorize the changes:
 - `doc` – Writing documentation
 - `refactor` – Improving existing code
 
-### **Commit Messages**
+### **Commit Messages**  
 
-Commit messages should follow the format:
+Commit messages should follow the format:  
 
-```
-[prefix] Commit message (#issue1, #issue2)
-```
+```  
+[prefix] Commit message (#PR)  
+```  
 
-Relevant issue numbers should be included in the parentheses.
+Relevant issue numbers should be included in the squashed commit description.  
 
 ### **Pull Requests**
 
