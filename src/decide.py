@@ -1,3 +1,4 @@
+from CMV import *
 # CONSTANT
 PI = 3.1415926535
 
@@ -74,5 +75,24 @@ class InvalidInputException(Exception):
         super().__init__(self.message)
 
 def DECIDE():
-    """Function we must write."""
+    CMV = [
+        lic_0(X, Y, PARAMETERS_T.LENGTH1),
+        lic_1(X, Y, PARAMETERS_T.RADIUS1),
+        lic_2(X, Y, PARAMETERS_T.EPSILON),
+        lic_3(X, Y, PARAMETERS_T.AREA1),
+        lic_4(X, Y, PARAMETERS_T.Q_PTS, PARAMETERS_T.QUADS),
+        lic_5(X, Y),
+        lic_6(X, Y, PARAMETERS_T.N_PTS, PARAMETERS_T.DIST),
+        lic_7(X, Y, PARAMETERS_T.K_PTS, PARAMETERS_T.LENGHT1),
+        lic_8(X, Y, PARAMETERS_T.A_PTS, PARAMETERS_T.B_PTS, PARAMETERS_T.RAIDUS1),
+        lic_9(X, Y, PARAMETERS_T.C_PTS, PARAMETERS_T.D_PTS, PARAMETERS_T.EPSILON),
+        lic_10(X, Y, PARAMETERS_T.E_PTS, PARAMETERS_T.F_PTS, PARAMETERS_T.AREA1),
+        lic_11(X, PARAMETERS_T.G_PTS),
+        lic_12(X, Y, PARAMETERS_T.K_PTS, PARAMETERS_T.LENGTH1, PARAMETERS_T.LENGTH2),
+        lic_13(X, Y, PARAMETERS_T.A_PTS, PARAMETERS_T.B_PTS, PARAMETERS_T.RADIUS1, PARAMETERS_T.RADIUS2),
+        lic_14(X, Y, PARAMETERS_T.E_PTS, PARAMETERS_T.F_PTS, PARAMETERS_T.AREA1, PARAMETERS_T.AREA2),
+    ]
+    
+    #TODO: continue after impl of PUM and FUV
+    
     pass
