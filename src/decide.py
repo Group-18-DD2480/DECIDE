@@ -4,7 +4,7 @@ PI = 3.1415926535
 # TYPE DECLARATIONS
 class CONNECTORS:
     def NOTUSED(i = None, j = None):
-        return True
+        return None
     
     def ANDD(i,j):
         return i and j

@@ -1,6 +1,6 @@
 import unittest
 
-from CMV import *
+from src.CMV import *
 
 class TestLIC_0(unittest.TestCase):
      # Tests for LIC0
