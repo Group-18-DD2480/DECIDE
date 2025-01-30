@@ -2,26 +2,27 @@ import unittest
 
 from src.CMV import *
 
+
 class TestLIC_0(unittest.TestCase):
-     # Tests for LIC0
+    # Tests for LIC0
     def test_LIC0_positive(self):
         # At least one pair with distance > LENGTH1
-        X = [0,5,10]
-        Y = [0,0,0]
+        X = [0, 5, 10]
+        Y = [0, 0, 0]
         LENGTH1 = 4.0
         self.assertTrue(lic_0(X, Y, LENGTH1))
 
     def test_LIC0_negative1(self):
         # No pair with distance > LENGTH1
-        X = [0,3,5]
-        Y = [0,0,0]
+        X = [0, 3, 5]
+        Y = [0, 0, 0]
         LENGTH1 = 6.0
         self.assertFalse(lic_0(X, Y, LENGTH1))
 
     def test_LIC0_negative2(self):
         # No pair with distance > LENGTH1
-        X = [0,3,0]
-        Y = [0,0,4]
+        X = [0, 3, 0]
+        Y = [0, 0, 4]
         LENGTH1 = 5.0
         self.assertFalse(lic_0(X, Y, LENGTH1))
 
@@ -30,45 +31,46 @@ class TestLIC_1(unittest.TestCase):
     # Tests for LIC1
     def test_LIC1_positive(self):
         # A set of three points not contained within a circle of RADIUS1
-        X = [0,1,0]
-        Y = [0,0,3]
+        X = [0, 1, 0]
+        Y = [0, 0, 3]
         RADIUS1 = 1.0
         self.assertTrue(lic_1(X, Y, RADIUS1))
 
     def test_LIC1_negative1(self):
         # All sets of three points are within a circle of RADIUS1
-        X = [0,1,0]
-        Y = [0,0,1]
+        X = [0, 1, 0]
+        Y = [0, 0, 1]
         RADIUS1 = 2.0
         self.assertFalse(lic_1(X, Y, RADIUS1))
 
     def test_LIC1_negative2(self):
         # All sets of three points are within a circle of RADIUS1
-        X = [0,2,0]
-        Y = [0,0,2]
+        X = [0, 2, 0]
+        Y = [0, 0, 2]
         RADIUS1 = 7.0
         self.assertFalse(lic_1(X, Y, RADIUS1))
+
 
 class TestLIC_2(unittest.TestCase):
     # Tests for LIC2
     def test_LIC2_positive(self):
         # Angle less than (PI - EPSILON)
-        X = [0,1,1]
-        Y = [0,0,1]
+        X = [0, 1, 1]
+        Y = [0, 0, 1]
         EPSILON = 0.0005
         self.assertTrue(lic_2(X, Y, EPSILON))
 
     def test_LIC2_negative(self):
         # Angle within (PI - EPSILON) and (PI + EPSILON)
-        X = [0,1,2]
-        Y = [0,0,0]
+        X = [0, 1, 2]
+        Y = [0, 0, 0]
         EPSILON = 0.0005
         self.assertFalse(lic_2(X, Y, EPSILON))
 
     def test_LIC2_invalid_input(self):
         # Angle undefined due to coinciding points
-        X = [0,0,1]
-        Y = [0,0,1]
+        X = [0, 0, 1]
+        Y = [0, 0, 1]
         EPSILON = 0.0005
         self.assertFalse(lic_2(X, Y, EPSILON))
 
@@ -77,30 +79,24 @@ class TestLIC_3(unittest.TestCase):
     # Tests for LIC3
     def test_LIC3_positive(self):
         # A triangle with area greater than AREA1
-        X = [0,4,0]
-        Y = [0,0,3]
+        X = [0, 4, 0]
+        Y = [0, 0, 3]
         AREA1 = 5
         self.assertTrue(lic_3(X, Y, AREA1))
 
     def test_LIC3_negative(self):
         # No triangle with area greater than AREA1
-        X = [0,1,0,0.5]
-        Y = [0,0,1,0]
+        X = [0, 1, 0, 0.5]
+        Y = [0, 0, 1, 0]
         AREA1 = 100
         self.assertFalse(lic_3(X, Y, AREA1))
 
     def test_LIC3_invalid_input(self):
         # Collinear points, area undefined (treated as 0)
-        X = [0,1,2]
-        Y = [0,1,2]
+        X = [0, 1, 2]
+        Y = [0, 1, 2]
         AREA1 = 0.5
         self.assertFalse(lic_3(X, Y, AREA1))
-
-
-
-    
-
-
 
 
 class TestLIC_4(unittest.TestCase):
@@ -222,6 +218,7 @@ class TestLIC_6(unittest.TestCase):
         N_PTS, DIST = 4, 2
         self.assertFalse(lic_6(X, Y, N_PTS, DIST))
 
+
 class TestLIC_7(unittest.TestCase):
     def test_insufficient_points(self):
         X, Y = [0, 1], [0, 1]
@@ -285,6 +282,7 @@ class TestLIC_9(unittest.TestCase):
         C_PTS, D_PTS, EPSILON = 1, 1, 0.1
         self.assertFalse(lic_9(X, Y, C_PTS, D_PTS, EPSILON))
 
+
 class TestLIC_10(unittest.TestCase):
     def test_insufficient_points(self):
         X, Y = [0, 1, 2], [0, 1, 0]
@@ -301,6 +299,7 @@ class TestLIC_10(unittest.TestCase):
         E_PTS, F_PTS, AREA1 = 1, 1, 2
         self.assertFalse(lic_10(X, Y, E_PTS, F_PTS, AREA1))
 
+
 class TestLIC_11(unittest.TestCase):
     def test_insufficient_points(self):
         X, G_PTS = [0, 1], 1
@@ -313,6 +312,7 @@ class TestLIC_11(unittest.TestCase):
     def test_difference_negative(self):
         X, G_PTS = [5, 4, 3, 2, 1, 0], 1
         self.assertTrue(lic_11(X, G_PTS))
+
 
 class TestLIC_12(unittest.TestCase):
     def test_insufficient_points(self):
@@ -335,6 +335,7 @@ class TestLIC_12(unittest.TestCase):
         K_PTS, LENGTH1, LENGTH2 = 1, 8, 2
         self.assertTrue(lic_12(X, Y, K_PTS, LENGTH1, LENGTH2))
 
+
 class TestLIC_13(unittest.TestCase):
     def test_insufficient_points(self):
         X, Y = [0, 1], [0, 1]
@@ -342,35 +343,35 @@ class TestLIC_13(unittest.TestCase):
         self.assertFalse(lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2))
 
     def test_radius_condition_met(self):
-        X, Y = [0, 0, 5 , 6, 10], [0, 1, 5, 6,  0]
+        X, Y = [0, 0, 5, 6, 10], [0, 1, 5, 6, 0]
         A_PTS, B_PTS, RADIUS1, RADIUS2 = 1, 1, 4.0, 15.0
         self.assertTrue(lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2))
 
     def test_radius_condition_not_met(self):
-        X, Y = [0, 0, 5 , 6, 10], [0, 1, 5, 6,  0]
+        X, Y = [0, 0, 5, 6, 10], [0, 1, 5, 6, 0]
         A_PTS, B_PTS, RADIUS1, RADIUS2 = 1, 1, 6.0, 1.0
         self.assertFalse(lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2))
 
     def test_radius_condition_met_inline(self):
-        X, Y = [0, 1, 0 , 6, 0], [0, 1, 5, 6,  10]
+        X, Y = [0, 1, 0, 6, 0], [0, 1, 5, 6, 10]
         A_PTS, B_PTS, RADIUS1, RADIUS2 = 1, 1, 4.0, 15.0
         self.assertTrue(lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2))
 
     def test_radius_condition_not_met_inline(self):
-        X, Y = [0, 1, 0 , 6, 0], [0, 1, 5, 6,  10]
+        X, Y = [0, 1, 0, 6, 0], [0, 1, 5, 6, 10]
         A_PTS, B_PTS, RADIUS1, RADIUS2 = 1, 1, 5.0, 1.0
         self.assertFalse(lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2))
 
     def test_fail_radiusA_only(self):
-        X, Y = [0, 0, 5 , 6, 10], [0, 1, 5, 6,  0]
+        X, Y = [0, 0, 5, 6, 10], [0, 1, 5, 6, 0]
         A_PTS, B_PTS, RADIUS1, RADIUS2 = 1, 1, 5.0, 15.0
         self.assertFalse(lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2))
 
-
     def test_fail_radiusB_only(self):
-        X, Y = [0, 0, 5 , 6, 10], [0, 1, 5, 6,  0]
+        X, Y = [0, 0, 5, 6, 10], [0, 1, 5, 6, 0]
         A_PTS, B_PTS, RADIUS1, RADIUS2 = 1, 1, 4.0, 1.0
         self.assertFalse(lic_13(X, Y, A_PTS, B_PTS, RADIUS1, RADIUS2))
+
 
 class TestLIC_14(unittest.TestCase):
     def test_insufficient_points(self):
@@ -397,5 +398,7 @@ class TestLIC_14(unittest.TestCase):
         X, Y = [0, 0, 5, 6, 10], [0, 1, 5, 4, 0]
         E_PTS, F_PTS, AREA1, AREA2 = 1, 1, 30.0, 40.0
         self.assertFalse(lic_14(X, Y, E_PTS, F_PTS, AREA1, AREA2))
-if __name__ == '__main__':
+
+
+if __name__ == "__main__":
     unittest.main()
