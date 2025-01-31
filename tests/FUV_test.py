@@ -1,6 +1,10 @@
 import unittest
-from src.FUV import FUV as function
-from src.decide import InvalidInputException
+
+import os, sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+
+from FUV import FUV as function
+from utils import InvalidInputException
 
 
 rows, cols = 15, 15  

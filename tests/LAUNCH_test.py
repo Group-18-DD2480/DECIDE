@@ -1,6 +1,10 @@
 import unittest
-from src.LAUNCH import LAUNCH
-from src.decide import InvalidInputException
+
+import os, sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+
+from LAUNCH import LAUNCH
+from utils import InvalidInputException
 
 class Test_LAUNCH(unittest.TestCase):
 

@@ -1,6 +1,9 @@
 import unittest
 
-from src.CMV import (
+import os, sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+
+from CMV import (
     lic_0,
     lic_1,
     lic_2,

@@ -50,7 +50,7 @@ python -m unittest discover -s tests -p '*_test.py'
 To execute DECIDE please run:
 
 ```python
-python decide.py
+python src/decide.py
 ```
 
 Ensure that the input data, i.e radar tracking points and necessary parameters, is correctly set within `decide.py` file before execution.

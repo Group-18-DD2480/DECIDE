@@ -1,4 +1,4 @@
-from src.decide import InvalidInputException
+from utils import InvalidInputException
 
 def PUM(LCM, CMV):
     """
@@ -30,7 +30,6 @@ def PUM(LCM, CMV):
         tempRow = []
         
         for j in range(LENGTH):
-            
             if i == j :
                 tempRow.append(None)
             elif LCM[i][j] == LCM[j][i] :
