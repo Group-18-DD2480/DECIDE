@@ -111,6 +111,9 @@ This project is licensed under MIT License. See `LICENSE` for details.
 - [feat] Automated testing with GitHub actions.
 - [feat] Add `LIC13` and `LIC14`.
 - [feat] Add unit tests for `LIC13` and `LIC14`.
+- [feat] Add unit test for `PUM`
+- [feat] Add `decide` with unit tests
+- [refactor] Refactor of `PUM` and `decide`
 - [doc] Create GitHub issues for the project.
 
 #### [@eliasfloreteng](https://github.com/eliasfloreteng) - Elias Floreteng
@@ -119,6 +122,8 @@ This project is licensed under MIT License. See `LICENSE` for details.
 - [feat] Add unit tests for `LIC7`, `LIC8` and `LIC9`.
 - [feat] VSCode settings for Python testing options.
 - [doc] Create basic `README.md`.
+- [doc] Essence checklist and way of working
+- [doc] Docstring for `CMV` test cases
 - [refactor] Format files with `ruff`.
 
 #### [@laykos0](https://github.com/laykos0) - Jakub Rybak
@@ -128,15 +133,21 @@ This project is licensed under MIT License. See `LICENSE` for details.
 - [feat] Add unit tests for `LIC10`, `LIC11` and `LIC12`.
 - [doc] Create `UnitTest` blueprint for the project.
 - [doc] Document project and contributions in `README.md`
+- [doc] Documentation of Commit rules
 
 #### [@RuriThomas](https://github.com/RuriThomas) - Ruri Osmon
 
 - [feat] Add `LIC4`, `LIC5` and `LIC6`.
 - [feat] Add unit tests for `LIC4`, `LIC5` and `LIC6`.
 - [doc] Create GitHub issues for the project.
+- [feat] Add unit test and fixes on `FUV`
+- [doc] Documentation for `LIC` methods
 
 #### [@YusufDemir1210](https://github.com/YusufDemir1210) - Yusuf Demir
 
 - [feat] Translate `decide.py` to Python.
 - [feat] Add `LIC0`, `LIC1`, `LIC2` and `LIC3`.
 - [feat] Add unit tests for `LIC0`, `LIC1`, `LIC2` and `LIC3`.
+- [feat] Add `FUV`
+- [feat] Add `PUM`
+- [feat] Add `launch` with unit tests
