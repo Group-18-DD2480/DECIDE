@@ -1,5 +1,5 @@
-from src import PUM, FUV, LAUNCH, CMV
-from src.utils import CONNECTORS, InvalidInputException
+import PUM, FUV, LAUNCH, CMV
+from utils import CONNECTORS, InvalidInputException
 
 # PARAMETERS T
 class PARAMETERS_T:

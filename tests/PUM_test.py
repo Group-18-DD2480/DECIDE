@@ -1,6 +1,10 @@
 import unittest
-from src.PUM import PUM
-from src.utils import CONNECTORS, InvalidInputException
+
+import os, sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+
+from PUM import PUM
+from utils import CONNECTORS, InvalidInputException
 
 class TestPUM(unittest.TestCase):
     """Test suite for PUM.
