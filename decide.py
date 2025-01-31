@@ -1,5 +1,5 @@
 from src import PUM, FUV, LAUNCH, CMV
-from src.utils import CONNECTORS
+from src.utils import CONNECTORS, InvalidInputException
 
 # PARAMETERS T
 class PARAMETERS_T:
@@ -60,6 +60,39 @@ FUV_value = []  # Array of booleans
 # Decision: Launch or No Launch
 LAUNCH_value = False
 
+def validate_inputs():
+    """
+    Validates global input variables. Raises InvalidInputException if any are invalid.
+    """
+    if not (2 <= NUMPOINTS <= 100):
+        raise InvalidInputException("NUMPOINTS must be between 2 and 100.")
+    
+    if len(X) != NUMPOINTS or len(Y) != NUMPOINTS:
+        raise InvalidInputException("X and Y must have exactly NUMPOINTS elements.")
+    
+    if not (len(LCM) == 15 and all(len(row) == 15 for row in LCM)):
+        raise InvalidInputException("LCM must be a 15x15 matrix.")
+    
+    if len(PUV) != 15:
+        raise InvalidInputException("PUV must be a list of 15 boolean values.")
+    
+    for param in [PARAMETERS.LENGTH1, PARAMETERS.RADIUS1, PARAMETERS.EPSILON, PARAMETERS.AREA1, 
+                  PARAMETERS.DIST, PARAMETERS.LENGTH2, PARAMETERS.RADIUS2, PARAMETERS.AREA2]:
+        if param < 0:
+            raise InvalidInputException("All distance, radius, epsilon, and area parameters must be non-negative.")
+    
+    if not (2 <= PARAMETERS.QPTS <= NUMPOINTS):
+        raise InvalidInputException("QPTS must be between 2 and NUMPOINTS.")
+    
+    if not (1 <= PARAMETERS.QUADS <= 3):
+        raise InvalidInputException("QUADS must be between 1 and 3.")
+    
+    for param in [PARAMETERS.NPTS, PARAMETERS.KPTS, PARAMETERS.APTS, PARAMETERS.BPTS, 
+                  PARAMETERS.CPTS, PARAMETERS.DPTS, PARAMETERS.EPTS, PARAMETERS.FPTS, PARAMETERS.GPTS]:
+        if param < 1 or param > NUMPOINTS - 2:
+            raise InvalidInputException(f"{param} must be between 1 and NUMPOINTS-2.")
+
+
 def DECIDE():
     """
     Determines the final launch decision based on the given input data.
@@ -82,6 +115,8 @@ def DECIDE():
     Output:
         Prints the final launch decision ("YES" or "NO") to standard output.
     """
+    
+    validate_inputs()
     
     CMV_values = [
         CMV.lic_0(X, Y, PARAMETERS.LENGTH1),
