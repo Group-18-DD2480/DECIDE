@@ -1,25 +1,4 @@
-from CMV import *
-import PUM
-import FUV
-
-# CONSTANT
-PI = 3.1415926535
-
-# TYPE DECLARATIONS
-class CONNECTORS:
-    def NOTUSED(i = None, j = None):
-        return True
-    
-    def ANDD(i,j):
-        return i and j
-
-    def ORR(i,j):
-        return i or j
-
-class COMPTYPE:
-    LT = 1111
-    EQ = 1112
-    GT = 1113
+from src import PUM, FUV, LAUNCH, CMV
 
 # PARAMETERS T
 class PARAMETERS_T:
@@ -66,19 +45,13 @@ PUM_value = []  # 2D array of booleans
 PUV = [] # Array of booleans
 
 # Conditions Met Vector
-CMV = []  # Array of booleans
+CMV_values = []  # Array of booleans
 
 # Final Unlocking Vector
 FUV_value = []  # Array of booleans
 
 # Decision: Launch or No Launch
-LAUNCH = False
-
-class InvalidInputException(Exception):
-    """Custom exception for invalid input."""
-    def __init__(self, message="Invalid input provided"):
-        self.message = message
-        super().__init__(self.message)
+LAUNCH_value = False
 
 def DECIDE():
     """
@@ -103,40 +76,40 @@ def DECIDE():
         Prints the final launch decision ("YES" or "NO") to standard output.
     """
     
-    CMV = [
-        lic_0(X, Y, PARAMETERS.LENGTH1),
-        lic_1(X, Y, PARAMETERS.RADIUS1),
-        lic_2(X, Y, PARAMETERS.EPSILON),
-        lic_3(X, Y, PARAMETERS.AREA1),
-        lic_4(X, Y, PARAMETERS.QPTS, PARAMETERS.QUADS),
-        lic_5(X, Y),
-        lic_6(X, Y, PARAMETERS.NPTS, PARAMETERS.DIST),
-        lic_7(X, Y, PARAMETERS.KPTS, PARAMETERS.LENGTH1),
-        lic_8(X, Y, PARAMETERS.APTS, PARAMETERS.BPTS, PARAMETERS.RADIUS1),
-        lic_9(X, Y, PARAMETERS.CPTS, PARAMETERS.DPTS, PARAMETERS.EPSILON),
-        lic_10(X, Y, PARAMETERS.EPTS, PARAMETERS.FPTS, PARAMETERS.AREA1),
-        lic_11(X, PARAMETERS.GPTS),
-        lic_12(X, Y, PARAMETERS.KPTS, PARAMETERS.LENGTH1, PARAMETERS.LENGTH2),
-        lic_13(X, Y, PARAMETERS.APTS, PARAMETERS.BPTS, PARAMETERS.RADIUS1, PARAMETERS.RADIUS2),
-        lic_14(X, Y, PARAMETERS.EPTS, PARAMETERS.FPTS, PARAMETERS.AREA1, PARAMETERS.AREA2),
+    CMV_values = [
+        CMV.lic_0(X, Y, PARAMETERS.LENGTH1),
+        CMV.lic_1(X, Y, PARAMETERS.RADIUS1),
+        CMV.lic_2(X, Y, PARAMETERS.EPSILON),
+        CMV.lic_3(X, Y, PARAMETERS.AREA1),
+        CMV.lic_4(X, Y, PARAMETERS.QPTS, PARAMETERS.QUADS),
+        CMV.lic_5(X, Y),
+        CMV.lic_6(X, Y, PARAMETERS.NPTS, PARAMETERS.DIST),
+        CMV.lic_7(X, Y, PARAMETERS.KPTS, PARAMETERS.LENGTH1),
+        CMV.lic_8(X, Y, PARAMETERS.APTS, PARAMETERS.BPTS, PARAMETERS.RADIUS1),
+        CMV.lic_9(X, Y, PARAMETERS.CPTS, PARAMETERS.DPTS, PARAMETERS.EPSILON),
+        CMV.lic_10(X, Y, PARAMETERS.EPTS, PARAMETERS.FPTS, PARAMETERS.AREA1),
+        CMV.lic_11(X, PARAMETERS.GPTS),
+        CMV.lic_12(X, Y, PARAMETERS.KPTS, PARAMETERS.LENGTH1, PARAMETERS.LENGTH2),
+        CMV.lic_13(X, Y, PARAMETERS.APTS, PARAMETERS.BPTS, PARAMETERS.RADIUS1, PARAMETERS.RADIUS2),
+        CMV.lic_14(X, Y, PARAMETERS.EPTS, PARAMETERS.FPTS, PARAMETERS.AREA1, PARAMETERS.AREA2),
     ]
     
-    PUM_value = PUM.PUM(LCM, CMV)
+    PUM_value = PUM.PUM(LCM, CMV_values)
     
     FUV_value = FUV.FUV(PUM_value,PUV)
     
     #TODO wait for launch function impl then call it and print
     
-    print("CMV (Conditions Met Vector):")
+    print("CMV (Conditions Met Vector): ")
     print(CMV)
     print("\n")
     
-    print("PUM (Preliminary Unlocking Matrix):")
+    print("PUM (Preliminary Unlocking Matrix): ")
     for row in PUM_value:
         print(row)
     print("\n")
     
-    print("FUV (Final Unlocking Vector):")
+    print("FUV (Final Unlocking Vector): ")
     print(FUV_value)
     print("\n")
     
