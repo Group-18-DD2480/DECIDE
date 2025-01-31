@@ -14,9 +14,9 @@ class TestPUM(unittest.TestCase):
         LCM = [[CONNECTORS.ANDD, CONNECTORS.NOTUSED, CONNECTORS.ORR ],
             [CONNECTORS.NOTUSED, CONNECTORS.ANDD, CONNECTORS.ANDD],
             [CONNECTORS.ORR, CONNECTORS.ANDD ,CONNECTORS.ANDD ]]
-        expected_PUM = [[True, True, True],
-            [True, False, False],
-            [True, False, True]]
+        expected_PUM = [[None, True, True],
+            [True, None, False],
+            [True, False, None]]
         
         result_PUM = PUM(LCM,CMV)
         

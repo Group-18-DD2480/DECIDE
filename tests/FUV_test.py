@@ -1,6 +1,6 @@
 import unittest
 from src.FUV import FUV as function
-from src.decide import InvalidInputException
+from src.utils import InvalidInputException
 
 
 rows, cols = 15, 15  

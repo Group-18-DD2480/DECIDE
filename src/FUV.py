@@ -1,4 +1,4 @@
-from src.decide import InvalidInputException
+from src.utils import InvalidInputException
 
 def FUV(PUM, PUV):
     """

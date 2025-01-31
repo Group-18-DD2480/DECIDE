@@ -30,7 +30,9 @@ def PUM(LCM, CMV):
         tempRow = []
         
         for j in range(LENGTH):
-            if LCM[i][j] == LCM[j][i] :
+            if i == j :
+                tempRow.append(None)
+            elif LCM[i][j] == LCM[j][i] :
                 tempRow.append(LCM[i][j](CMV[i], CMV[j]))
             else:
                 raise InvalidInputException
