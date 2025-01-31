@@ -98,7 +98,10 @@ def DECIDE():
     
     FUV_value = FUV.FUV(PUM_value,PUV)
     
-    #TODO wait for launch function impl then call it and print
+    LAUNCH_value = LAUNCH.LAUNCH(FUV_value) 
+    
+    print("LAUNCH decision: ", "YES" if LAUNCH_value else "NO")
+    print("\n")
     
     print("CMV (Conditions Met Vector): ")
     print(CMV)
