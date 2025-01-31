@@ -1,6 +1,6 @@
 import unittest
 from src.PUM import PUM
-from src.decide import CONNECTORS, InvalidInputException
+from src.utils import CONNECTORS, InvalidInputException
 
 class TestPUM(unittest.TestCase):
     """Test suite for PUM.
@@ -14,9 +14,9 @@ class TestPUM(unittest.TestCase):
         LCM = [[CONNECTORS.ANDD, CONNECTORS.NOTUSED, CONNECTORS.ORR ],
             [CONNECTORS.NOTUSED, CONNECTORS.ANDD, CONNECTORS.ANDD],
             [CONNECTORS.ORR, CONNECTORS.ANDD ,CONNECTORS.ANDD ]]
-        expected_PUM = [[None, True, True],
-            [True, None, False],
-            [True, False, None]]
+        expected_PUM = [[True, True, True],
+            [True, False, False],
+            [True, False, True]]
         
         result_PUM = PUM(LCM,CMV)
         

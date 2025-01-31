@@ -1,6 +1,6 @@
 import unittest
 from src.LAUNCH import LAUNCH
-from src.decide import InvalidInputException
+from src.utils import InvalidInputException
 
 class Test_LAUNCH(unittest.TestCase):
 
